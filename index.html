@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Safe guard for sandboxed iframe environments where window.fetch has only a getter
+      (function () {
+        try {
+          var originalFetch = window.fetch;
+          var customFetch = originalFetch;
+          try {
+            Object.defineProperty(window, 'fetch', {
+              get: function () {
+                return customFetch || originalFetch;
+              },
+              set: function (fn) {
+                customFetch = fn;
+              },
+              configurable: true,
+              enumerable: true,
+            });
+          } catch (e) {
+            // fallback if Object.defineProperty is locked
+          }
+        } catch (err) {
+          // ignore
+        }
+      })();
+    </script>
+    <title>Ashled Soluções Comércio e Prestação de Serviços, Lda | Connecting Needs. Creating Solutions.</title>
+    <meta name="description" content="Website oficial da Ashled Soluções Comércio e Prestação de Serviços, Lda. Consultoria empresarial, sourcing global, conexões estratégicas e coordenação one-stop em Angola e no mundo." />
+    <link rel="icon" type="image/png" href="https://visa.onlyvibes.online/wp-content/uploads/2026/08/image001.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-black text-white font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-[#FE8D00] selection:text-black">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

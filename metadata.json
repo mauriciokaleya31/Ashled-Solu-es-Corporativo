@@ -1,0 +1,6 @@
+{
+  "name": "Ashled Soluções Corporativo",
+  "description": "Website corporativo oficial da Ashled Soluções Comércio e Prestação de Serviços, Lda com suporte multi-idioma (Português, Inglês, Chinês e Francês) e ricas animações interativas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
