@@ -155,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-2 w-48 bg-neutral-950 border border-neutral-800 rounded-2xl shadow-2xl p-1.5 z-50"
+                      className="absolute right-0 mt-2 w-56 bg-neutral-950 border border-neutral-800 rounded-2xl shadow-2xl p-2 z-50 max-h-80 overflow-y-auto divide-y divide-neutral-900"
                     >
                       {languagesList.map((lang) => (
                         <button
@@ -164,15 +164,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                             setLanguage(lang.code);
                             setLangDropdownOpen(false);
                           }}
-                          className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                             language === lang.code
                               ? 'bg-[#FE8D00] text-black font-bold shadow-[0_0_10px_rgba(254,141,0,0.4)]'
                               : 'text-neutral-300 hover:bg-neutral-900 hover:text-white'
                           }`}
                         >
-                          <span className="flex items-center gap-2">
+                          <span className="flex items-center gap-2.5">
                             <span className="text-base">{lang.flag}</span>
-                            <span>{lang.label}</span>
+                            <span className="text-left font-medium">{lang.label}</span>
                           </span>
                           {language === lang.code && <span className="text-xs font-black">✓</span>}
                         </button>

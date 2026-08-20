@@ -30,6 +30,7 @@ import { HeroSlider } from '../components/HeroSlider';
 import { TickerMarquee } from '../components/TickerMarquee';
 import { NetworkCanvas } from '../components/NetworkCanvas';
 import { ScopeEstimator } from '../components/ScopeEstimator';
+import { FloatingLogisticsBackground } from '../components/FloatingLogisticsBackground';
 import { NavPage } from '../types';
 
 interface HomePageProps {
@@ -141,9 +142,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
         </div>
       </section>
 
-      {/* 4. Who We Are & Philosophy Section */}
-      <section className="relative py-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* 4. Who We Are & Philosophy Section (With Floating Ships & Airplanes Background) */}
+      <section className="relative py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden rounded-3xl my-8 bg-neutral-950/70 border border-neutral-900 shadow-2xl">
+        {/* Floating Ship and Airplane Background Animations */}
+        <FloatingLogisticsBackground />
+
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Image Collage with Golden Highlights */}
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden border border-neutral-800 shadow-[0_0_40px_rgba(254,141,0,0.15)] group">

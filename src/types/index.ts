@@ -1,4 +1,17 @@
-export type Language = 'pt' | 'en' | 'zh' | 'fr' | 'es';
+export type Language =
+  | 'pt'
+  | 'en'
+  | 'zh'
+  | 'fr'
+  | 'es'
+  | 'de'
+  | 'it'
+  | 'ar'
+  | 'ru'
+  | 'ja'
+  | 'tr'
+  | 'hi';
+
 export type SupportedLanguage = Language;
 
 export type NavPage = 'home' | 'about' | 'services' | 'projects' | 'global' | 'quality' | 'contact';
