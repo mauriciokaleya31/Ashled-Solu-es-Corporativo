@@ -360,8 +360,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 {/* Email dispatch audit box */}
                 <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 text-left space-y-2 text-xs">
                   <div className="flex items-center justify-between text-neutral-400 font-mono text-[11px] border-b border-neutral-800 pb-1.5">
-                    <span>Destinatários Oficiais:</span>
-                    <strong className="text-[#FE8D00]">geral@ashled.com, kaleyapt@gmail.com</strong>
+                    <span>Destinatário Oficial:</span>
+                    <strong className="text-[#FE8D00]">geral@ashled.com</strong>
                   </div>
                   <div className="text-neutral-300">
                     <strong className="text-white">{leadResult.lead.name}</strong> ({leadResult.lead.company || 'Individual'}) • {leadResult.lead.phone} • {leadResult.lead.serviceName}

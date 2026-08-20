@@ -245,7 +245,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                   </span>
                   <h4 className="text-2xl font-black text-white">Mensagem Processada com Sucesso!</h4>
                   <p className="text-xs sm:text-sm text-neutral-400 max-w-md mx-auto">
-                    A sua mensagem foi estruturada para os emails: <strong className="text-[#FE8D00]">geral@ashled.com</strong> e <strong className="text-[#FE8D00]">kaleyapt@gmail.com</strong>
+                    A sua mensagem foi estruturada para o e-mail oficial: <strong className="text-[#FE8D00]">geral@ashled.com</strong>
                   </p>
                 </div>
 
@@ -340,9 +340,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-neutral-500 uppercase font-mono">E-mails Oficiais</div>
+                      <div className="text-[10px] text-neutral-500 uppercase font-mono">E-mail Oficial</div>
                       <div className="font-bold text-white group-hover:text-[#FE8D00]">{COMPANY_INFO.email}</div>
-                      <div className="text-[10px] text-neutral-400">kaleyapt@gmail.com</div>
                     </div>
                   </div>
                   <ExternalLink className="w-4 h-4 opacity-50 group-hover:opacity-100" />

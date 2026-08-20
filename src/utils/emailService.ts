@@ -17,7 +17,6 @@ export interface LeadSubmission {
 
 export const OFFICIAL_DESTINATION_EMAILS = [
   'geral@ashled.com',
-  'kaleyapt@gmail.com',
 ];
 
 /**
@@ -150,17 +149,28 @@ export async function dispatchLeadSubmission(data: {
   const mailtoUrl = generateMailtoUrl(lead);
   const whatsAppUrl = generateWhatsAppUrl(lead);
 
-  // 3. Optional server-side POST
+  // 3. Dispatch to backend API
   try {
-    fetch('/api/send-lead', {
+    const res = await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lead),
-    }).catch(() => {
-      // Background endpoint fallback
+      body: JSON.stringify({
+        type: data.serviceId ? 'quote' : 'contact',
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        subject: data.serviceName || 'Contacto pelo site Ashled',
+        message: data.message,
+        services: data.serviceName,
+        urgency: data.urgency,
+        destination: data.geoScope,
+      }),
     });
-  } catch {
-    // Ignore network error in preview
+    const resData = await res.json();
+    console.log('Envio de email resultado:', resData);
+  } catch (err) {
+    console.error('Aviso ao enviar para o endpoint de email:', err);
   }
 
   return {
