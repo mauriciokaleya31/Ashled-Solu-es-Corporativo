@@ -49,7 +49,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenQu
   const filteredServices =
     activeTab === 'all'
       ? SERVICES_DATA
-      : SERVICES_DATA.filter((s) => s.id === activeTab || s.category.toLowerCase().includes(activeTab));
+      : SERVICES_DATA.filter((s) => s.id === activeTab || (s.category && s.category.toLowerCase().includes(activeTab.toLowerCase())));
 
   return (
     <div className="pt-24 pb-20 bg-black text-white min-h-screen">

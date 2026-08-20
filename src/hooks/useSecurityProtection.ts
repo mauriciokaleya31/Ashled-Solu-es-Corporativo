@@ -42,8 +42,9 @@ export function useSecurityProtection() {
 
     // 2. Disable Key Combinations for DevTools, View Source, and Save
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!e) return;
       const isCtrlOrCmd = e.ctrlKey || e.metaKey;
-      const key = e.key.toLowerCase();
+      const key = (e.key || '').toLowerCase();
       const code = e.keyCode || e.which;
 
       // F12 (DevTools)
