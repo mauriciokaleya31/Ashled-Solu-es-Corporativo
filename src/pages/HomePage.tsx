@@ -113,10 +113,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
       {/* 1. Dynamic Hero Slider with Full-Bleed Images & Transitions */}
       <HeroSlider onNavigate={onNavigate} onOpenQuote={onOpenQuote} />
 
-      {/* 2. Infinite Sliding Ticker Marquee ("sklloid a passar") */}
-      <TickerMarquee />
-
-      {/* 3. Executive Stats Counter Bar */}
+      {/* 2. Executive Stats Counter Bar */}
       <section className="relative z-10 py-10 bg-neutral-950 border-b border-neutral-900 px-4 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800/80">

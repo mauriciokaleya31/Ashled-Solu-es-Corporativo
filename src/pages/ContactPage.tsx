@@ -119,9 +119,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
             <div className="flex items-center justify-between border-b border-neutral-800 pb-4">
               <div>
                 <h3 className="text-xl font-black text-white">Envie a sua Mensagem ou Pedido</h3>
-                <p className="text-xs text-neutral-400">
-                  Notificação automática para: <span className="text-[#FE8D00] font-bold">geral@ashled.com</span> & <span className="text-[#FE8D00] font-bold">kaleyapt@gmail.com</span>
-                </p>
               </div>
               <div className="p-3 rounded-2xl bg-black border border-[#FE8D00]/40 text-[#FE8D00]">
                 <MessageSquare className="w-5 h-5" />
@@ -377,47 +374,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
           </div>
         </div>
 
-        {/* Interactive Luanda Map & Location Banner */}
-        <div className="p-8 rounded-3xl bg-neutral-900 border border-neutral-800 shadow-2xl space-y-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FE8D00] uppercase tracking-wider mb-1">
-                <Navigation className="w-3.5 h-3.5" />
-                <span>{t('locationTitle', 'Nossa Localização em Luanda')}</span>
-              </div>
-              <h4 className="text-xl font-black text-white">Rua Murtala Mohammed - Ilha do Cabo</h4>
-            </div>
-
-            <a
-              href="https://maps.google.com/?q=Rua+Murtala+Mohammed+Ilha+do+Cabo+Luanda+Angola"
-              target="_blank"
-              rel="noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-black hover:bg-[#FE8D00] text-white hover:text-black text-xs font-bold border border-neutral-800 hover:border-[#FE8D00] transition-all flex items-center gap-2"
-            >
-              <ExternalLink className="w-4 h-4" />
-              <span>Abrir no Google Maps</span>
-            </a>
-          </div>
-
-          {/* Stylized Interactive Map Box */}
-          <div className="relative w-full h-80 rounded-2xl bg-black border border-neutral-800 overflow-hidden flex items-center justify-center text-center p-6 group">
-            <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#FE8D00_1px,transparent_1px)] [background-size:20px_20px]" />
-            <div className="relative z-10 space-y-3 max-w-md">
-              <div className="w-14 h-14 rounded-2xl bg-[#FE8D00] text-black flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(254,141,0,0.5)] group-hover:scale-110 transition-transform">
-                <MapPin className="w-7 h-7 animate-bounce text-black" />
-              </div>
-              <div>
-                <h5 className="text-lg font-black text-white">ASHLED SOLUÇÕES • SEDE LUANDA</h5>
-                <p className="text-xs text-neutral-300 mt-1">
-                  Rua Murtala Mohammed, Bairro Ilha Do Cabo, Luanda, Angola
-                </p>
-                <p className="text-xs text-[#FE8D00] font-mono mt-1">
-                  NIF: {COMPANY_INFO.nif} • Coordenadas: 8.7844° S, 13.2289° E
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   );

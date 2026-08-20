@@ -78,20 +78,6 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
       {/* Main Slide Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-24 sm:py-28 w-full">
         <div className="max-w-3xl space-y-6">
-          {/* Slide Category Tag */}
-          <motion.div
-            key={`tag-${currentSlide.id}`}
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-3"
-          >
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FE8D00] text-black text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(254,141,0,0.5)]">
-              <Sparkles className="w-3.5 h-3.5 text-black" />
-              <span>{currentSlide.tag}</span>
-            </span>
-          </motion.div>
-
           {/* Slide Headline */}
           <motion.h1
             key={`title-${currentSlide.id}`}
