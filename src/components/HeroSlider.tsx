@@ -133,7 +133,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
 
             <button
               onClick={() => onNavigate('services')}
-              className="px-6 py-4 rounded-xl bg-black/60 hover:bg-white/10 text-white font-bold text-sm tracking-wide border border-white/20 hover:border-[#FE8D00] backdrop-blur-md transition-all flex items-center gap-2 cursor-pointer"
+              className="px-6 py-4 rounded-xl bg-white/10 hover:bg-[#FE8D00] text-white hover:text-black font-bold text-sm tracking-wide backdrop-blur-md transition-all flex items-center gap-2 cursor-pointer border-0"
             >
               <span>{t('exploreServices', 'Explorar Todos os Serviços')}</span>
             </button>
@@ -141,11 +141,11 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
         </div>
       </div>
 
-      {/* Slider Controls: Arrows */}
+      {/* Slider Controls: Arrows - Borderless */}
       <button
         onClick={prevSlide}
         aria-label="Slide Anterior"
-        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/60 hover:bg-[#FE8D00] text-white hover:text-black border border-white/10 hover:border-[#FE8D00] transition-all backdrop-blur-md cursor-pointer"
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/70 hover:bg-[#FE8D00] text-white hover:text-black transition-all backdrop-blur-md cursor-pointer border-0 shadow-lg"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
@@ -153,7 +153,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
       <button
         onClick={nextSlide}
         aria-label="Próximo Slide"
-        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/60 hover:bg-[#FE8D00] text-white hover:text-black border border-white/10 hover:border-[#FE8D00] transition-all backdrop-blur-md cursor-pointer"
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/70 hover:bg-[#FE8D00] text-white hover:text-black transition-all backdrop-blur-md cursor-pointer border-0 shadow-lg"
       >
         <ChevronRight className="w-6 h-6" />
       </button>

@@ -39,7 +39,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenQuote })
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             onClick={scrollToTop}
-            className="p-3 rounded-full bg-white text-gray-700 hover:text-blue-600 hover:bg-gray-50 border border-gray-200 shadow-lg backdrop-blur-md transition-all pointer-events-auto active:scale-95"
+            className="p-3 rounded-full bg-neutral-900 text-white hover:text-black hover:bg-[#FE8D00] shadow-xl backdrop-blur-md transition-all pointer-events-auto active:scale-95 cursor-pointer border-0"
             aria-label="Voltar ao Topo"
           >
             <ArrowUp className="w-4 h-4" />
@@ -47,7 +47,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenQuote })
         )}
       </AnimatePresence>
 
-      {/* Direct WhatsApp Chat Trigger */}
+      {/* Direct WhatsApp Chat Trigger - Borderless */}
       <motion.a
         id="floating-whatsapp-btn"
         href={whatsappUrl}
@@ -57,7 +57,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenQuote })
         animate={{ scale: 1, opacity: 1 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 border border-emerald-400 pointer-events-auto transition-all group"
+        className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xl shadow-emerald-600/30 border-0 pointer-events-auto transition-all group cursor-pointer"
       >
         <div className="relative">
           <MessageCircle className="w-5 h-5" />
@@ -67,15 +67,15 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenQuote })
         <span className="hidden sm:inline-block">WhatsApp Direct</span>
       </motion.a>
 
-      {/* Floating Quick Quote Bubble */}
+      {/* Floating Quick Quote Bubble - Borderless */}
       <motion.button
         id="floating-quote-btn"
         onClick={onOpenQuote}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
-        className="hidden md:flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-blue-50 text-blue-600 font-semibold text-xs border border-blue-200 shadow-md shadow-blue-100 pointer-events-auto transition-all"
+        className="hidden md:flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs shadow-xl shadow-[#FE8D00]/25 border-0 pointer-events-auto transition-all cursor-pointer"
       >
-        <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+        <Sparkles className="w-3.5 h-3.5 text-black" />
         <span>{t('requestQuote', 'Pedir Cotação')}</span>
       </motion.button>
     </div>

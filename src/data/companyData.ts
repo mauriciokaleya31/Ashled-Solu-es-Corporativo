@@ -47,10 +47,10 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     id: 'slide-1',
     titleKey: 'heroSlide1Title',
-    titleFallback: 'Connecting Needs. Creating Solutions. Delivering Quality.',
+    titleFallback: 'Conectando Necessidades. Criando Soluções. Entregando Qualidade.',
     subtitleKey: 'heroSlide1Subtitle',
     subtitleFallback: 'A ponte estratégica que conecta as suas necessidades às melhores soluções empresariais, comerciais e comunitárias.',
-    tag: 'One-Stop Solution Provider',
+    tag: 'Soluções Integradas One-Stop',
     badgeHighlight: 'Sede em Luanda • Presença Global',
     image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=85',
     ctaText: 'Solicitar Cotação',

@@ -11,9 +11,6 @@ import {
   Users,
   Layers,
   FolderKanban,
-  Award,
-  Send,
-  Building,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { SupportedLanguage, NavPage } from '../types';
@@ -40,13 +37,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Strictly 5 organized, essential menu items with generous spacing
   const navItems: { id: NavPage; labelKey: string; labelFallback: string; icon: React.ComponentType<{ className?: string }> }[] = [
-    { id: 'home', labelKey: 'navHome', labelFallback: 'Início', icon: Home },
-    { id: 'about', labelKey: 'navAbout', labelFallback: 'Sobre Nós', icon: Users },
+    { id: 'home', labelKey: 'navHome', labelFallback: 'Home', icon: Home },
+    { id: 'about', labelKey: 'navAbout', labelFallback: 'Sobre', icon: Users },
     { id: 'services', labelKey: 'navServices', labelFallback: 'Serviços', icon: Layers },
     { id: 'projects', labelKey: 'navProjects', labelFallback: 'Projectos', icon: FolderKanban },
-    { id: 'global', labelKey: 'navGlobal', labelFallback: 'Rede Global', icon: Globe },
-    { id: 'quality', labelKey: 'navQuality', labelFallback: 'Qualidade', icon: Award },
     { id: 'contact', labelKey: 'navContact', labelFallback: 'Contactos', icon: Phone },
   ];
 
@@ -68,24 +64,24 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-black/95 backdrop-blur-md border-b border-[#FE8D00]/30 shadow-2xl py-2.5'
-            : 'bg-black/90 backdrop-blur-sm border-b border-neutral-800 py-3.5'
+            ? 'bg-black/95 backdrop-blur-md shadow-2xl py-2'
+            : 'bg-black/90 backdrop-blur-sm py-3.5'
         }`}
       >
-        {/* Top Info Bar */}
-        <div className="hidden lg:block border-b border-white/10 pb-2 mb-2">
+        {/* Top Info Micro-Bar */}
+        <div className="hidden lg:block pb-2 mb-2">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-neutral-300">
-            <div className="flex items-center gap-5">
-              <span className="flex items-center gap-1.5 text-white font-medium">
-                <span className="w-2 h-2 rounded-full bg-[#FE8D00] animate-pulse inline-block" />
+            <div className="flex items-center gap-6">
+              <span className="flex items-center gap-2 text-neutral-200 font-medium">
+                <span className="w-2 h-2 rounded-full bg-[#FE8D00] animate-pulse inline-block shadow-[0_0_8px_#FE8D00]" />
                 <span>Sede: {COMPANY_INFO.address}</span>
               </span>
               <span className="text-neutral-400">
-                NIF Oficial: <strong className="text-[#FE8D00] font-mono font-bold">{COMPANY_INFO.nif}</strong>
+                NIF: <strong className="text-[#FE8D00] font-mono font-bold">{COMPANY_INFO.nif}</strong>
               </span>
             </div>
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-6">
               <a
                 href={`tel:${COMPANY_INFO.phoneRaw}`}
                 className="hover:text-[#FE8D00] transition-colors flex items-center gap-1.5 font-bold text-white"
@@ -93,29 +89,29 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                 <Phone className="w-3.5 h-3.5 text-[#FE8D00]" />
                 <span>{COMPANY_INFO.phone}</span>
               </a>
-              <span className="text-xs text-neutral-400">
-                Email: <strong className="text-white">geral@ashled.com</strong>
+              <span className="text-xs text-neutral-300">
+                Email: <strong className="text-[#FE8D00]">geral@ashled.com</strong>
               </span>
-              <span className="px-2 py-0.5 rounded bg-[#FE8D00]/20 text-[#FE8D00] border border-[#FE8D00]/40 font-bold text-[11px]">
-                Angola ↔ China ↔ Global
+              <span className="px-2.5 py-0.5 rounded-full bg-[#FE8D00]/20 text-[#FE8D00] font-bold text-[11px]">
+                Angola ↔ Global
               </span>
             </div>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-2">
-            {/* Brand Logo */}
+          <div className="flex items-center justify-between gap-4">
+            {/* Brand Logo with clean breathing room */}
             <button
               onClick={() => handleNavClick('home')}
-              className="flex items-center focus:outline-none cursor-pointer shrink-0"
+              className="flex items-center focus:outline-none cursor-pointer shrink-0 transition-opacity hover:opacity-90"
               aria-label="Ashled Home"
             >
               <BrandLogo size="md" lightMode={false} />
             </button>
 
-            {/* Desktop Navigation Links - ALWAYS VISIBLE ON MD AND UP */}
-            <nav className="hidden md:flex items-center gap-1 bg-neutral-900/80 p-1.5 rounded-2xl border border-neutral-800">
+            {/* Desktop Navigation - Clean, Spaced, Organized with strictly 5 items */}
+            <nav className="hidden md:flex items-center gap-2 lg:gap-3 bg-neutral-950/90 px-3 py-1.5 rounded-2xl shadow-md">
               {navItems.map((item) => {
                 const isActive = currentPage === item.id;
                 const IconComponent = item.icon;
@@ -124,13 +120,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                     key={item.id}
                     id={`nav-link-${item.id}`}
                     onClick={() => handleNavClick(item.id)}
-                    className={`relative px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                    className={`relative px-4 py-2 rounded-xl text-xs lg:text-sm font-bold tracking-wide transition-all flex items-center gap-2 cursor-pointer ${
                       isActive
-                        ? 'bg-[#FE8D00] text-black font-black shadow-[0_0_12px_rgba(254,141,0,0.5)]'
-                        : 'text-neutral-300 hover:text-white hover:bg-white/10'
+                        ? 'bg-[#FE8D00] text-black font-black shadow-[0_0_15px_rgba(254,141,0,0.45)]'
+                        : 'text-neutral-300 hover:text-white hover:bg-neutral-900'
                     }`}
                   >
-                    <IconComponent className={`w-3.5 h-3.5 ${isActive ? 'text-black' : 'text-[#FE8D00]'}`} />
+                    <IconComponent className={`w-4 h-4 ${isActive ? 'text-black' : 'text-[#FE8D00]'}`} />
                     <span>{t(item.labelKey, item.labelFallback)}</span>
                   </button>
                 );
@@ -138,17 +134,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
             </nav>
 
             {/* Right Header Actions */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-3">
               {/* Language Selector Dropdown */}
               <div className="relative">
                 <button
                   id="lang-selector-desktop-btn"
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold border border-neutral-700 hover:border-[#FE8D00] transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-white text-xs font-bold border border-neutral-700 hover:border-[#FE8D00] transition-all cursor-pointer shadow-sm"
                   aria-expanded={langDropdownOpen}
                 >
                   <Globe className="w-3.5 h-3.5 text-[#FE8D00]" />
-                  <span className="uppercase">{language}</span>
+                  <span className="uppercase tracking-wider">{language}</span>
                   <ChevronDown className="w-3 h-3 text-neutral-400" />
                 </button>
 
@@ -168,17 +164,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                             setLanguage(lang.code);
                             setLangDropdownOpen(false);
                           }}
-                          className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                          className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                             language === lang.code
                               ? 'bg-[#FE8D00] text-black font-bold shadow-[0_0_10px_rgba(254,141,0,0.4)]'
-                              : 'text-neutral-300 hover:bg-white/10 hover:text-white'
+                              : 'text-neutral-300 hover:bg-neutral-900 hover:text-white'
                           }`}
                         >
                           <span className="flex items-center gap-2">
-                            <span className="text-sm">{lang.flag}</span>
+                            <span className="text-base">{lang.flag}</span>
                             <span>{lang.label}</span>
                           </span>
-                          {language === lang.code && <span className="text-[10px] font-black">✓</span>}
+                          {language === lang.code && <span className="text-xs font-black">✓</span>}
                         </button>
                       ))}
                     </motion.div>
@@ -186,11 +182,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                 </AnimatePresence>
               </div>
 
-              {/* Quick Quote CTA Button in #FE8D00 */}
+              {/* Pedir Cotação CTA Button in #FE8D00 */}
               <button
                 id="header-quote-cta-btn"
                 onClick={() => onOpenQuote()}
-                className="hidden sm:flex px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(254,141,0,0.4)] hover:shadow-[0_0_25px_rgba(254,141,0,0.7)] transform active:scale-95 transition-all items-center gap-2 cursor-pointer shrink-0"
+                className="hidden sm:flex px-5 py-2.5 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(254,141,0,0.4)] hover:shadow-[0_0_25px_rgba(254,141,0,0.7)] transform active:scale-95 transition-all items-center gap-2 cursor-pointer shrink-0"
               >
                 <Sparkles className="w-3.5 h-3.5 text-black" />
                 <span>{t('requestQuote', 'Pedir Cotação')}</span>
@@ -209,19 +205,19 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
           </div>
         </div>
 
-        {/* Mobile Drawer Menu */}
+        {/* Mobile Drawer Menu - Clean and spaced with strictly 5 items */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-black border-t border-neutral-800 px-4 py-5 space-y-4 shadow-2xl"
+              className="md:hidden bg-neutral-950 border-t border-neutral-800 px-5 py-6 space-y-5 shadow-2xl"
             >
-              <div className="text-[11px] font-bold text-[#FE8D00] uppercase tracking-wider px-2">
-                Navegação Principal Ashled:
+              <div className="text-[11px] font-black text-[#FE8D00] uppercase tracking-widest px-1">
+                Menu de Navegação:
               </div>
-              <nav className="grid grid-cols-2 gap-2">
+              <nav className="flex flex-col space-y-2">
                 {navItems.map((item) => {
                   const IconComponent = item.icon;
                   const isActive = currentPage === item.id;
@@ -229,13 +225,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                     <button
                       key={item.id}
                       onClick={() => handleNavClick(item.id)}
-                      className={`w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border ${
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center gap-3 border cursor-pointer ${
                         isActive
-                          ? 'bg-[#FE8D00] text-black border-[#FE8D00] shadow-[0_0_12px_rgba(254,141,0,0.4)] font-black'
+                          ? 'bg-[#FE8D00] text-black border-[#FE8D00] shadow-[0_0_15px_rgba(254,141,0,0.35)] font-black'
                           : 'bg-neutral-900 border-neutral-800 text-neutral-200 hover:bg-neutral-800'
                       }`}
                     >
-                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-black' : 'text-[#FE8D00]'}`} />
+                      <IconComponent className={`w-5 h-5 ${isActive ? 'text-black' : 'text-[#FE8D00]'}`} />
                       <span>{t(item.labelKey, item.labelFallback)}</span>
                     </button>
                   );
@@ -244,8 +240,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
 
               {/* Language selection in mobile menu */}
               <div className="pt-3 border-t border-neutral-800 space-y-2">
-                <div className="text-[11px] text-neutral-400 font-bold uppercase px-1">Selecione o Idioma:</div>
-                <div className="grid grid-cols-3 gap-1.5">
+                <div className="text-[11px] text-neutral-400 font-bold uppercase px-1">Idioma / Language:</div>
+                <div className="grid grid-cols-3 gap-2">
                   {languagesList.map((lang) => (
                     <button
                       key={lang.code}
@@ -253,14 +249,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                         setLanguage(lang.code);
                         setMobileMenuOpen(false);
                       }}
-                      className={`p-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 border ${
+                      className={`p-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 border cursor-pointer ${
                         language === lang.code
                           ? 'bg-[#FE8D00] text-black border-[#FE8D00] font-bold'
                           : 'bg-neutral-900 text-neutral-300 border-neutral-800'
                       }`}
                     >
                       <span>{lang.flag}</span>
-                      <span className="uppercase text-[10px]">{lang.code}</span>
+                      <span className="uppercase text-[11px]">{lang.code}</span>
                     </button>
                   ))}
                 </div>
@@ -271,7 +267,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                   setMobileMenuOpen(false);
                   onOpenQuote();
                 }}
-                className="w-full py-3.5 rounded-xl bg-[#FE8D00] text-black font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 rounded-xl bg-[#FE8D00] text-black font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-black" />
                 <span>{t('requestQuote', 'Solicitar Cotação Agora')}</span>
@@ -282,20 +278,38 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
       </header>
 
       {/* Floating Bottom Quick Bar for Mobile Devices */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-black/95 backdrop-blur-lg border-t border-neutral-800 py-2 px-3 flex items-center justify-around shadow-2xl">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-black/95 backdrop-blur-lg border-t border-neutral-800 py-2.5 px-3 flex items-center justify-around shadow-2xl">
         <button
           onClick={() => handleNavClick('home')}
-          className={`flex flex-col items-center gap-0.5 text-[10px] font-bold ${
+          className={`flex flex-col items-center gap-1 text-[11px] font-bold cursor-pointer ${
             currentPage === 'home' ? 'text-[#FE8D00]' : 'text-neutral-400'
           }`}
         >
           <Home className="w-4 h-4" />
-          <span>Início</span>
+          <span>Home</span>
+        </button>
+
+        <button
+          onClick={() => handleNavClick('about')}
+          className={`flex flex-col items-center gap-1 text-[11px] font-bold cursor-pointer ${
+            currentPage === 'about' ? 'text-[#FE8D00]' : 'text-neutral-400'
+          }`}
+        >
+          <Users className="w-4 h-4" />
+          <span>Sobre</span>
+        </button>
+
+        <button
+          onClick={() => onOpenQuote()}
+          className="flex flex-col items-center justify-center -mt-6 w-13 h-13 rounded-full bg-[#FE8D00] text-black shadow-[0_0_18px_rgba(254,141,0,0.6)] font-black cursor-pointer"
+          aria-label="Pedir Cotação"
+        >
+          <Sparkles className="w-5 h-5" />
         </button>
 
         <button
           onClick={() => handleNavClick('services')}
-          className={`flex flex-col items-center gap-0.5 text-[10px] font-bold ${
+          className={`flex flex-col items-center gap-1 text-[11px] font-bold cursor-pointer ${
             currentPage === 'services' ? 'text-[#FE8D00]' : 'text-neutral-400'
           }`}
         >
@@ -304,30 +318,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
         </button>
 
         <button
-          onClick={() => onOpenQuote()}
-          className="flex flex-col items-center justify-center -mt-5 w-12 h-12 rounded-full bg-[#FE8D00] text-black shadow-[0_0_15px_rgba(254,141,0,0.6)] font-black"
-        >
-          <Sparkles className="w-5 h-5" />
-        </button>
-
-        <button
-          onClick={() => handleNavClick('projects')}
-          className={`flex flex-col items-center gap-0.5 text-[10px] font-bold ${
-            currentPage === 'projects' ? 'text-[#FE8D00]' : 'text-neutral-400'
-          }`}
-        >
-          <FolderKanban className="w-4 h-4" />
-          <span>Projectos</span>
-        </button>
-
-        <button
           onClick={() => handleNavClick('contact')}
-          className={`flex flex-col items-center gap-0.5 text-[10px] font-bold ${
+          className={`flex flex-col items-center gap-1 text-[11px] font-bold cursor-pointer ${
             currentPage === 'contact' ? 'text-[#FE8D00]' : 'text-neutral-400'
           }`}
         >
           <Phone className="w-4 h-4" />
-          <span>Contacto</span>
+          <span>Contactos</span>
         </button>
       </div>
     </>

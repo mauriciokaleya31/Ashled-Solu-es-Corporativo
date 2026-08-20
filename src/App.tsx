@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { ShieldCheck, Lock } from 'lucide-react';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -13,11 +14,15 @@ import { GlobalNetworkPage } from './pages/GlobalNetworkPage';
 import { QualityPage } from './pages/QualityPage';
 import { ContactPage } from './pages/ContactPage';
 import { NavPage } from './types';
+import { useSecurityProtection } from './hooks/useSecurityProtection';
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState<NavPage>('home');
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [quoteServiceId, setQuoteServiceId] = useState<string | undefined>(undefined);
+
+  // Activate Right-Click & DevTools Source Protection
+  const { securityToast } = useSecurityProtection();
 
   const handleNavigate = (page: NavPage) => {
     setCurrentPage(page);
@@ -83,6 +88,29 @@ function AppContent() {
         onClose={() => setQuoteModalOpen(false)}
         defaultServiceId={quoteServiceId}
       />
+
+      {/* Security Toast Notification for Right-Click / DevTools Interception */}
+      <AnimatePresence>
+        {securityToast.show && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 30, scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-neutral-950/95 border border-[#FE8D00] shadow-[0_0_30px_rgba(254,141,0,0.4)] backdrop-blur-md flex items-center gap-3 text-white text-xs font-bold"
+          >
+            <div className="w-7 h-7 rounded-lg bg-[#FE8D00] text-black flex items-center justify-center font-black shrink-0">
+              <Lock className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="text-[#FE8D00] font-black uppercase text-[10px] tracking-wider">
+                Proteção Ativa
+              </div>
+              <div className="text-neutral-200">{securityToast.message}</div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Global Footer */}
       <Footer onNavigate={handleNavigate} onOpenQuote={handleOpenQuote} />

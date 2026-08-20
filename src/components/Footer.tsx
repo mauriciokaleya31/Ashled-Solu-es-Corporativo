@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             </p>
 
             <div className="pt-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-neutral-300">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-neutral-900 text-xs text-neutral-300">
                 <span className="w-2 h-2 rounded-full bg-[#FE8D00] animate-pulse"></span>
                 <span>{COMPANY_INFO.country} • Conexões Globais</span>
               </div>
