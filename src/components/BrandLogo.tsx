@@ -17,12 +17,12 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   const imgHeightClass = size === 'sm' ? 'h-10' : size === 'lg' ? 'h-16' : 'h-12';
 
   return (
-    <div className={`flex items-center select-none ${className}`}>
+    <div className={`flex items-center select-none bg-transparent ${className}`}>
       {!imageError ? (
         <img
           src={COMPANY_LOGO_URL}
           alt="ASHLED SOLUÇÕES"
-          className={`${imgHeightClass} w-auto max-w-[220px] object-contain transition-transform duration-300 hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)]`}
+          className={`${imgHeightClass} w-auto max-w-[240px] object-contain transition-transform duration-200 hover:scale-102`}
           referrerPolicy="no-referrer"
           onError={() => setImageError(true)}
         />

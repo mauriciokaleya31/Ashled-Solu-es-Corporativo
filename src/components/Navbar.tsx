@@ -5,6 +5,10 @@ import {
   X,
   Globe,
   Phone,
+  Mail,
+  MapPin,
+  Clock,
+  ShieldCheck,
   Sparkles,
   ChevronDown,
   Home,
@@ -62,56 +66,72 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200 py-2'
-            : 'bg-white/90 backdrop-blur-sm border-b border-slate-200/80 py-3.5'
+            ? 'shadow-md border-b border-slate-200'
+            : 'border-b border-slate-200/90'
         }`}
       >
-        {/* Top Info Micro-Bar */}
-        <div className="hidden lg:block pb-2 mb-2 border-b border-slate-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-slate-600">
-            <div className="flex items-center gap-6">
-              <span className="flex items-center gap-2 text-slate-700 font-medium">
-                <span className="w-2 h-2 rounded-full bg-[#FE8D00] animate-pulse inline-block shadow-[0_0_8px_#FE8D00]" />
-                <span>Sede: {COMPANY_INFO.address}</span>
+        {/* Top Executive Micro-Bar (Always Visible & Prominent) */}
+        <div className="bg-slate-900 text-white border-b border-slate-800 py-1.5 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] sm:text-xs">
+            {/* Left info: Address, NIF & Hours */}
+            <div className="flex items-center gap-3 sm:gap-6">
+              <span className="hidden sm:flex items-center gap-1.5 text-slate-300 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-[#FE8D00]" />
+                <span>{COMPANY_INFO.address}</span>
               </span>
-              <span className="text-slate-500">
-                NIF: <strong className="text-[#FE8D00] font-mono font-bold">{COMPANY_INFO.nif}</strong>
+
+              <span className="flex items-center gap-1.5 text-slate-300">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#FE8D00]" />
+                <span>NIF:</span>
+                <strong className="text-[#FE8D00] font-mono font-bold">{COMPANY_INFO.nif}</strong>
+              </span>
+
+              <span className="hidden md:flex items-center gap-1.5 text-slate-400">
+                <Clock className="w-3 h-3 text-[#FE8D00]" />
+                <span>Seg - Sex: 08:00 - 17:30</span>
               </span>
             </div>
 
-            <div className="flex items-center gap-6">
+            {/* Right info: Direct Phone, Official Email & Trade Corridor */}
+            <div className="flex items-center gap-3 sm:gap-5">
               <a
                 href={`tel:${COMPANY_INFO.phoneRaw}`}
-                className="hover:text-[#FE8D00] transition-colors flex items-center gap-1.5 font-bold text-slate-800"
+                className="hover:text-[#FE8D00] transition-colors flex items-center gap-1 font-bold text-white"
               >
                 <Phone className="w-3.5 h-3.5 text-[#FE8D00]" />
                 <span>{COMPANY_INFO.phone}</span>
               </a>
-              <span className="text-xs text-slate-600">
-                Email: <strong className="text-[#FE8D00]">geral@ashled.com</strong>
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#FE8D00]/15 text-[#b45309] font-bold text-[11px] border border-[#FE8D00]/30">
-                Angola ↔ Global
+
+              <a
+                href={`mailto:${COMPANY_INFO.email}`}
+                className="hidden sm:flex items-center gap-1 hover:text-[#FE8D00] text-slate-300 transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-[#FE8D00]" />
+                <span>geral@ashled.com</span>
+              </a>
+
+              <span className="px-2 py-0.5 rounded-full bg-[#FE8D00] text-black font-black text-[10px] tracking-wide uppercase shadow-xs">
+                Angola ↔ China & Global
               </span>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white py-2">
           <div className="flex items-center justify-between gap-4">
-            {/* Brand Logo with clean breathing room */}
+            {/* Brand Logo with clean pure white breathing room */}
             <button
               onClick={() => handleNavClick('home')}
-              className="flex items-center focus:outline-none cursor-pointer shrink-0 transition-opacity hover:opacity-90"
+              className="flex items-center focus:outline-none cursor-pointer shrink-0 transition-opacity hover:opacity-95 bg-white py-0.5"
               aria-label="Ashled Home"
             >
               <BrandLogo size="md" lightMode={true} />
             </button>
 
             {/* Desktop Navigation - Clean, Spaced, Organized with strictly 5 items */}
-            <nav className="hidden md:flex items-center gap-2 lg:gap-3 bg-slate-100/90 px-3 py-1.5 rounded-2xl shadow-inner border border-slate-200/80">
+            <nav className="hidden md:flex items-center gap-1.5 lg:gap-2 bg-slate-50 px-2.5 py-1.5 rounded-2xl border border-slate-200">
               {navItems.map((item) => {
                 const isActive = currentPage === item.id;
                 const IconComponent = item.icon;
@@ -120,9 +140,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                     key={item.id}
                     id={`nav-link-${item.id}`}
                     onClick={() => handleNavClick(item.id)}
-                    className={`relative px-4 py-2 rounded-xl text-xs lg:text-sm font-bold tracking-wide transition-all flex items-center gap-2 cursor-pointer ${
+                    className={`relative px-3.5 py-2 rounded-xl text-xs lg:text-sm font-bold tracking-wide transition-all flex items-center gap-2 cursor-pointer ${
                       isActive
-                        ? 'bg-[#FE8D00] text-black font-black shadow-[0_2px_10px_rgba(254,141,0,0.35)]'
+                        ? 'bg-[#FE8D00] text-black font-black shadow-sm'
                         : 'text-slate-700 hover:text-slate-950 hover:bg-white'
                     }`}
                   >
@@ -140,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                 <button
                   id="lang-selector-desktop-btn"
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold border border-slate-200 hover:border-[#FE8D00] transition-all cursor-pointer shadow-sm"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold border border-slate-200 hover:border-[#FE8D00] transition-all cursor-pointer shadow-xs"
                   aria-expanded={langDropdownOpen}
                 >
                   <Globe className="w-3.5 h-3.5 text-[#FE8D00]" />

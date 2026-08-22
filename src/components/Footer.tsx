@@ -30,7 +30,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Col 1: Brand & Positioning (4 cols) */}
           <div className="md:col-span-4 space-y-4">
-            <BrandLogo size="md" lightMode={false} />
+            <div className="inline-block p-2 bg-white rounded-xl shadow-sm">
+              <BrandLogo size="md" lightMode={true} />
+            </div>
             <p className="text-xs text-neutral-300 leading-relaxed">
               {t('whoWeAreLead', 'Ashled Soluções Comércio e Prestação de Serviços, Lda é uma empresa focada em soluções práticas, orientação profissional e coordenação de projectos.')}
             </p>
