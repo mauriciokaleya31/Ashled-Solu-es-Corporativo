@@ -83,17 +83,17 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
       : showcaseProjects.filter((p) => p.category === projectCategory);
 
   return (
-    <div className="pt-24 pb-20 bg-black text-white min-h-screen">
+    <div className="pt-24 pb-20 bg-slate-50 text-slate-900 min-h-screen">
       {/* Header Banner with Rich Image */}
-      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-neutral-950 border-b border-neutral-800 overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80"
             alt="Projects Banner"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-900/60" />
         </div>
 
         <div className="max-w-7xl mx-auto space-y-4 relative z-10">
@@ -104,7 +104,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
             Desenvolvimento e Gestão de Projectos
           </h1>
-          <p className="text-base sm:text-xl text-neutral-300 max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-xl text-slate-300 max-w-3xl leading-relaxed">
             Da concepção inicial à entrega final: transformamos ideias em projectos práticos e iniciativas de impacto duradouro.
           </p>
         </div>
@@ -113,10 +113,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
       {/* The 7-Stage Execution Flow */}
       <section className="py-16 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#FE8D00]">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
             Metodologia Ashled
           </span>
-          <h2 className="text-2xl sm:text-4xl font-black text-white">
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
             O Nosso Fluxo de Execução em 7 Fases
           </h2>
         </div>
@@ -125,14 +125,14 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
           {lifecycleStages.map((stage, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-[#FE8D00] transition-all flex flex-col justify-between"
+              className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-[#FE8D00] transition-all flex flex-col justify-between shadow-xs hover:shadow-md"
             >
               <div>
                 <span className="text-xs font-black font-mono text-black px-2 py-0.5 rounded bg-[#FE8D00] mb-2 inline-block">
                   {stage.num}
                 </span>
-                <h4 className="text-sm font-black text-white mb-1">{stage.title}</h4>
-                <p className="text-[11px] text-neutral-400 leading-snug">{stage.desc}</p>
+                <h4 className="text-sm font-black text-slate-900 mb-1">{stage.title}</h4>
+                <p className="text-[11px] text-slate-500 leading-snug">{stage.desc}</p>
               </div>
             </div>
           ))}
@@ -141,15 +141,15 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
 
       {/* Projects Showcase Cards with Photography */}
       <section className="py-12 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-neutral-800 pb-4">
-          <h3 className="text-xl font-black text-white">Casos de Estudo & Iniciativas</h3>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-200 pb-4">
+          <h3 className="text-xl font-black text-slate-900">Casos de Estudo & Iniciativas</h3>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setProjectCategory('all')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 projectCategory === 'all'
-                  ? 'bg-[#FE8D00] text-black shadow-[0_0_10px_rgba(254,141,0,0.3)]'
-                  : 'bg-neutral-900 text-neutral-300 border border-neutral-800 hover:bg-neutral-800'
+                  ? 'bg-[#FE8D00] text-black shadow-sm font-black'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
               Todos
@@ -158,8 +158,8 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
               onClick={() => setProjectCategory('commercial')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 projectCategory === 'commercial'
-                  ? 'bg-[#FE8D00] text-black shadow-[0_0_10px_rgba(254,141,0,0.3)]'
-                  : 'bg-neutral-900 text-neutral-300 border border-neutral-800 hover:bg-neutral-800'
+                  ? 'bg-[#FE8D00] text-black shadow-sm font-black'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
               Comerciais & Sourcing
@@ -168,8 +168,8 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
               onClick={() => setProjectCategory('social')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 projectCategory === 'social'
-                  ? 'bg-[#FE8D00] text-black shadow-[0_0_10px_rgba(254,141,0,0.3)]'
-                  : 'bg-neutral-900 text-neutral-300 border border-neutral-800 hover:bg-neutral-800'
+                  ? 'bg-[#FE8D00] text-black shadow-sm font-black'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
               }`}
             >
               Impacto Comunitário
@@ -181,42 +181,42 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
           {filtered.map((p) => (
             <div
               key={p.id}
-              className="rounded-3xl bg-neutral-900 border border-neutral-800 hover:border-[#FE8D00] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-[0_0_30px_rgba(254,141,0,0.2)] group"
+              className="rounded-3xl bg-white border border-slate-200 hover:border-[#FE8D00] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-xl group shadow-sm"
             >
-              <div className="h-56 w-full relative overflow-hidden bg-black">
+              <div className="h-56 w-full relative overflow-hidden bg-slate-100">
                 <img
                   src={p.image}
                   alt={p.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/30 to-transparent" />
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-[#FE8D00] text-[#FE8D00] text-xs font-mono font-bold">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-900/90 text-[#FE8D00] text-xs font-mono font-bold shadow-md">
                   {p.location}
                 </div>
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#FE8D00] text-black text-xs font-black uppercase">
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#FE8D00] text-black text-xs font-black uppercase shadow-md">
                   {p.type}
                 </div>
               </div>
 
               <div className="p-7 space-y-4">
-                <h4 className="text-xl font-black text-white group-hover:text-[#FE8D00] transition-colors">
+                <h4 className="text-xl font-black text-slate-900 group-hover:text-[#FE8D00] transition-colors">
                   {p.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {p.desc}
                 </p>
 
-                <div className="p-3.5 rounded-2xl bg-black border border-neutral-800 text-xs text-neutral-200 font-semibold flex items-center gap-2">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-800 font-semibold flex items-center gap-2">
                   <Award className="w-4 h-4 text-[#FE8D00] shrink-0" />
                   <span>{p.impact}</span>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-neutral-800">
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
                   {p.tags.map((t, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-1 rounded-lg bg-neutral-950 text-neutral-400 text-[10px] font-mono border border-neutral-800"
+                      className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 text-[10px] font-mono border border-slate-200"
                     >
                       #{t}
                     </span>
@@ -231,7 +231,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
         <div className="pt-8 text-center">
           <button
             onClick={onOpenQuote}
-            className="px-8 py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(254,141,0,0.4)] flex items-center justify-center gap-2 mx-auto cursor-pointer"
+            className="px-8 py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 mx-auto cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-black" />
             <span>Desenvolver Projecto com a Ashled</span>

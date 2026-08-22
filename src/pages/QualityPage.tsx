@@ -58,17 +58,17 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onNavigate, onOpenQuot
   ];
 
   return (
-    <div className="pt-24 pb-20 bg-black text-white min-h-screen">
+    <div className="pt-24 pb-20 bg-slate-50 text-slate-900 min-h-screen">
       {/* Header Banner with Rich Image */}
-      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-neutral-950 border-b border-neutral-800 overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80"
             alt="Quality Banner"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-900/60" />
         </div>
 
         <div className="max-w-7xl mx-auto space-y-4 relative z-10">
@@ -95,12 +95,12 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onNavigate, onOpenQuot
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08 }}
-              className="p-8 rounded-3xl bg-neutral-900 border border-neutral-800 hover:border-[#FE8D00] space-y-4 transition-all hover:shadow-[0_0_20px_rgba(254,141,0,0.2)]"
+              className="p-8 rounded-3xl bg-white border border-slate-200 hover:border-[#FE8D00] space-y-4 transition-all shadow-sm hover:shadow-xl"
             >
-              <div className="w-12 h-12 rounded-2xl bg-black border border-[#FE8D00]/40 flex items-center justify-center text-[#FE8D00] font-black font-mono text-lg">
+              <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center text-[#FE8D00] font-black font-mono text-lg">
                 0{idx + 1}
               </div>
-              <h4 className="text-base sm:text-lg font-black text-white leading-tight">
+              <h4 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
                 {t(pKey)}
               </h4>
             </motion.div>
@@ -108,12 +108,12 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onNavigate, onOpenQuot
         </div>
 
         {/* Why Choose Ashled (8 Reasons) */}
-        <div className="space-y-10 pt-12 border-t border-neutral-800">
+        <div className="space-y-10 pt-12 border-t border-slate-200">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#FE8D00]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
               Diferenciais Competitivos
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900">
               {t('whyChooseTitle', 'Porquê Escolher a Ashled?')}
             </h2>
           </div>
@@ -124,13 +124,13 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onNavigate, onOpenQuot
               return (
                 <div
                   key={item.id}
-                  className="p-6 rounded-3xl bg-neutral-900 border border-neutral-800 hover:border-[#FE8D00] space-y-3 transition-all group hover:shadow-[0_0_20px_rgba(254,141,0,0.2)]"
+                  className="p-6 rounded-3xl bg-white border border-slate-200 hover:border-[#FE8D00] space-y-3 transition-all group shadow-sm hover:shadow-xl"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-black border border-neutral-800 text-[#FE8D00] flex items-center justify-center group-hover:bg-[#FE8D00] group-hover:text-black transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 text-[#FE8D00] flex items-center justify-center group-hover:bg-[#FE8D00] group-hover:text-black transition-all">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h4 className="text-base font-black text-white">{t(item.titleKey)}</h4>
-                  <p className="text-xs text-neutral-400 leading-relaxed">{t(item.descKey)}</p>
+                  <h4 className="text-base font-black text-slate-900">{t(item.titleKey)}</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">{t(item.descKey)}</p>
                 </div>
               );
             })}
@@ -138,20 +138,20 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onNavigate, onOpenQuot
         </div>
 
         {/* The Ashled Promise Card */}
-        <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-b from-neutral-900 via-black to-neutral-900 border border-[#FE8D00]/50 text-center space-y-6 max-w-4xl mx-auto shadow-2xl">
+        <div className="p-8 sm:p-14 rounded-3xl bg-slate-900 text-white border border-slate-800 text-center space-y-6 max-w-4xl mx-auto shadow-2xl">
           <span className="inline-block px-4 py-1.5 rounded-full bg-[#FE8D00] text-black text-xs font-black uppercase tracking-wider">
             {t('promiseTitle')}
           </span>
           <h3 className="text-2xl sm:text-4xl font-black text-white">
             {t('promiseHighlight')}
           </h3>
-          <p className="text-xs sm:text-base text-neutral-300 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xs sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
             {t('promiseText')}
           </p>
           <div className="pt-2">
             <button
               onClick={onOpenQuote}
-              className="px-8 py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(254,141,0,0.4)] flex items-center justify-center gap-2 mx-auto cursor-pointer"
+              className="px-8 py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 mx-auto cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-black" />
               <span>Experimente o Padrão de Qualidade Ashled</span>

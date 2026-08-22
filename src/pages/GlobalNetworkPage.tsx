@@ -38,17 +38,17 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
   const selectedHubObj = GLOBAL_HUBS_DATA.find((h) => h.id === activeHub) || GLOBAL_HUBS_DATA[0];
 
   return (
-    <div className="pt-24 pb-20 bg-black text-white min-h-screen">
+    <div className="pt-24 pb-20 bg-slate-50 text-slate-900 min-h-screen">
       {/* Header Banner */}
-      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-neutral-950 border-b border-neutral-800 overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80"
             alt="Global Banner"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-900/60" />
         </div>
 
         <div className="max-w-7xl mx-auto space-y-4 relative z-10">
@@ -59,7 +59,7 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
             {t('globalTitle', 'Conexões Empresariais Globais & Parcerias')}
           </h1>
-          <p className="text-base sm:text-xl text-neutral-300 max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-xl text-slate-300 max-w-3xl leading-relaxed">
             {t('globalSubtitle', 'Conectando Angola ao Mundo e o Mundo a Angola.')}
           </p>
         </div>
@@ -69,9 +69,9 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
       <section className="py-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-4 text-sm sm:text-base text-neutral-300 leading-relaxed">
+            <div className="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed">
               <p>{t('globalDesc1')}</p>
-              <p className="text-[#FE8D00] font-bold italic text-lg sm:text-xl">
+              <p className="text-[#b45309] font-bold italic text-lg sm:text-xl">
                 &ldquo;{t('globalDesc2')}&rdquo;
               </p>
               <p>
@@ -79,8 +79,8 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-neutral-900 border border-[#FE8D00]/40 text-xs text-neutral-300 space-y-1">
-              <div className="font-bold uppercase text-[11px] tracking-wider text-[#FE8D00]">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs text-slate-700 space-y-1">
+              <div className="font-bold uppercase text-[11px] tracking-wider text-[#b45309]">
                 Ponte Estratégica Angola ↔ China & Global
               </div>
               <p>
@@ -89,13 +89,13 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
             </div>
           </div>
 
-          <div className="lg:col-span-5 p-8 rounded-3xl bg-neutral-900 border border-neutral-800 shadow-2xl space-y-6">
-            <h3 className="text-lg font-black text-white flex items-center gap-2">
+          <div className="lg:col-span-5 p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6">
+            <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#FE8D00]" />
               <span>9 Áreas de Conexão Internacional</span>
             </h3>
 
-            <div className="space-y-2 text-xs text-neutral-300">
+            <div className="space-y-2 text-xs text-slate-700">
               {connectionPillars.map((p, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#FE8D00] shrink-0 mt-0.5" />
@@ -107,13 +107,13 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
         </div>
 
         {/* Global Hubs Interactive Browser */}
-        <div className="space-y-8 pt-8 border-t border-neutral-800">
+        <div className="space-y-8 pt-8 border-t border-slate-200">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FE8D00]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
                 Hubs & Corredores Operacionais
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black text-white">Nossa Presença Estratégica</h3>
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900">Nossa Presença Estratégica</h3>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -123,8 +123,8 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
                   onClick={() => setActiveHub(hub.id)}
                   className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     activeHub === hub.id
-                      ? 'bg-[#FE8D00] text-black shadow-[0_0_15px_rgba(254,141,0,0.4)]'
-                      : 'bg-neutral-900 border border-neutral-800 text-neutral-300 hover:bg-neutral-800'
+                      ? 'bg-[#FE8D00] text-black shadow-sm font-black'
+                      : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                   }`}
                 >
                   {hub.name}
@@ -138,33 +138,33 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
             key={selectedHubObj.id}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-3xl bg-neutral-900 border border-[#FE8D00]/50 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+            className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
           >
-            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-black">
+            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-100">
               <img
                 src={selectedHubObj.image}
                 alt={selectedHubObj.name}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
             </div>
 
             <div className="lg:col-span-7 p-8 space-y-6">
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-mono font-bold">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-[#FE8D00] text-xs font-mono font-bold">
                   <MapPin className="w-3.5 h-3.5" />
                   <span>{selectedHubObj.city}, {selectedHubObj.country}</span>
                 </div>
-                <h4 className="text-3xl font-black text-white">{selectedHubObj.name}</h4>
-                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">{selectedHubObj.role}</p>
+                <h4 className="text-3xl font-black text-slate-900">{selectedHubObj.name}</h4>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{selectedHubObj.role}</p>
               </div>
 
-              <div className="space-y-3 bg-black/70 p-5 rounded-2xl border border-neutral-800">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-[#FE8D00]">
+              <div className="space-y-3 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                <h5 className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
                   Actuação Principal Neste Hub:
                 </h5>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-neutral-300">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
                   {selectedHubObj.focus.map((f, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-[#FE8D00] shrink-0" />
@@ -177,7 +177,7 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
               <div className="pt-2">
                 <button
                   onClick={() => onOpenQuote('sourcing')}
-                  className="px-6 py-3 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,141,0,0.3)] flex items-center gap-2 cursor-pointer"
+                  className="px-6 py-3 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-md flex items-center gap-2 cursor-pointer"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-black" />
                   <span>Conectar com Este Corredor</span>

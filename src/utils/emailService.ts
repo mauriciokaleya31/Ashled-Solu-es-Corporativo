@@ -11,6 +11,8 @@ export interface LeadSubmission {
   urgency?: string;
   geoScope?: string;
   message: string;
+  attachmentName?: string;
+  attachmentSize?: string;
   timestamp: string;
   destinationEmails: string[];
 }
@@ -41,6 +43,7 @@ DETALHES DO SERVIÇO & REQUISITOS:
 - Serviço Pretendido: ${lead.serviceName || lead.serviceId || 'Coordenação One-Stop'}
 - Nível de Urgência: ${lead.urgency || 'Padrão / Planeado'}
 - Âmbito Geográfico: ${lead.geoScope || 'Angola / Global'}
+${lead.attachmentName ? `- Arquivo / Anexo: ${lead.attachmentName} (${lead.attachmentSize || 'anexado'})` : ''}
 
 MENSAGEM / ESPECIFICAÇÃO DA NECESSIDADE:
 --------------------------------------------------------
@@ -75,9 +78,7 @@ export function generateWhatsAppUrl(lead: LeadSubmission): string {
 📧 *Email:* ${lead.email}
 📞 *Telefone:* ${lead.phone}
 🎯 *Serviço:* ${lead.serviceName || lead.serviceId || 'Geral'}
-⏱️ *Urgência:* ${lead.urgency || 'Padrão'}
-🌐 *Âmbito:* ${lead.geoScope || 'Angola'}
-
+${lead.attachmentName ? `📎 *Anexo:* ${lead.attachmentName}\n` : ''}
 📝 *Mensagem:*
 ${lead.message || 'Solicitação enviada via website oficial.'}
 
@@ -87,10 +88,23 @@ _Enviado para ${lead.destinationEmails.join(', ')}_`;
 }
 
 /**
+ * Helper to format file sizes nicely (KB, MB)
+ */
+export function formatBytes(bytes: number, decimals = 1): string {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+/**
  * Processes and dispatches the lead:
  * 1. Saves locally in browser localStorage audit log
- * 2. Attempts API notification if available
- * 3. Returns pre-built mailto and whatsapp links
+ * 2. Directly submits via FormSubmit (free PHP-like email relay with file attachments to geral@ashled.com)
+ * 3. Notifies local backend endpoint
+ * 4. Returns pre-built mailto and whatsapp links
  */
 export async function dispatchLeadSubmission(data: {
   name: string;
@@ -102,6 +116,7 @@ export async function dispatchLeadSubmission(data: {
   urgency?: string;
   geoScope?: string;
   message: string;
+  attachmentFile?: File | null;
 }): Promise<{
   success: boolean;
   ticketRef: string;
@@ -120,6 +135,9 @@ export async function dispatchLeadSubmission(data: {
     minute: '2-digit',
   });
 
+  const attachmentName = data.attachmentFile?.name;
+  const attachmentSize = data.attachmentFile ? formatBytes(data.attachmentFile.size) : undefined;
+
   const lead: LeadSubmission = {
     ticketRef,
     name: data.name,
@@ -131,6 +149,8 @@ export async function dispatchLeadSubmission(data: {
     urgency: data.urgency,
     geoScope: data.geoScope,
     message: data.message,
+    attachmentName,
+    attachmentSize,
     timestamp,
     destinationEmails: OFFICIAL_DESTINATION_EMAILS,
   };
@@ -149,9 +169,40 @@ export async function dispatchLeadSubmission(data: {
   const mailtoUrl = generateMailtoUrl(lead);
   const whatsAppUrl = generateWhatsAppUrl(lead);
 
-  // 3. Dispatch to backend API
+  // 3. Direct free submission via FormSubmit (handles text and file attachments directly to email)
   try {
-    const res = await fetch('/api/send-email', {
+    const formData = new FormData();
+    formData.append('_subject', `[ASHLED #${ticketRef}] ${data.name} - ${data.serviceName || 'Contacto'}`);
+    formData.append('_template', 'table');
+    formData.append('_captcha', 'false');
+    formData.append('Referência Ticket', ticketRef);
+    formData.append('Nome Completo', data.name);
+    formData.append('E-mail', data.email);
+    formData.append('Telefone / WhatsApp', data.phone);
+    formData.append('Empresa / Organização', data.company || 'Particular');
+    formData.append('Serviço Pretendido', data.serviceName || 'Geral');
+    formData.append('Mensagem / Detalhes', data.message);
+    if (data.geoScope) formData.append('Âmbito Geográfico', data.geoScope);
+    if (data.urgency) formData.append('Urgência', data.urgency);
+
+    if (data.attachmentFile) {
+      formData.append('attachment', data.attachmentFile, data.attachmentFile.name);
+    }
+
+    await fetch('https://formsubmit.co/ajax/geral@ashled.com', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+  } catch (err) {
+    console.warn('FormSubmit direct dispatch:', err);
+  }
+
+  // 4. Also notify local backend endpoint
+  try {
+    await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -165,12 +216,12 @@ export async function dispatchLeadSubmission(data: {
         services: data.serviceName,
         urgency: data.urgency,
         destination: data.geoScope,
+        attachmentName,
+        attachmentSize,
       }),
     });
-    const resData = await res.json();
-    console.log('Envio de email resultado:', resData);
   } catch (err) {
-    console.error('Aviso ao enviar para o endpoint de email:', err);
+    console.warn('Aviso ao enviar para endpoint local:', err);
   }
 
   return {

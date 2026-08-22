@@ -56,7 +56,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col font-sans selection:bg-[#FE8D00] selection:text-black antialiased">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-[#FE8D00] selection:text-black antialiased">
       {/* Header & Navigation */}
       <Navbar
         currentPage={currentPage}

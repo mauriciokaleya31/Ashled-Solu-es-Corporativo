@@ -109,55 +109,55 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-slate-50 text-slate-900 min-h-screen">
       {/* 1. Dynamic Hero Slider with Full-Bleed Images & Transitions */}
       <HeroSlider onNavigate={onNavigate} onOpenQuote={onOpenQuote} />
 
       {/* 2. Executive Stats Counter Bar */}
-      <section className="relative z-10 py-10 bg-neutral-950 border-b border-neutral-900 px-4 sm:px-8 lg:px-12">
+      <section className="relative z-10 py-10 bg-white border-b border-slate-200 px-4 sm:px-8 lg:px-12 shadow-xs">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800/80">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-colors">
             <div className="text-3xl sm:text-4xl font-black text-[#FE8D00] font-mono">6</div>
-            <div className="text-xs sm:text-sm font-bold text-white mt-1">Pilares Estratégicos</div>
-            <div className="text-[11px] text-neutral-400">Consultoria a Sourcing</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1">Pilares Estratégicos</div>
+            <div className="text-[11px] text-slate-500">Consultoria a Sourcing</div>
           </div>
-          <div className="p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800/80">
-            <div className="text-3xl sm:text-4xl font-black text-white font-mono">100%</div>
-            <div className="text-xs sm:text-sm font-bold text-white mt-1">Ponto de Contacto Único</div>
-            <div className="text-[11px] text-neutral-400">One-Stop Solution</div>
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-colors">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 font-mono">100%</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1">Ponto de Contacto Único</div>
+            <div className="text-[11px] text-slate-500">One-Stop Solution</div>
           </div>
-          <div className="p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800/80">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-colors">
             <div className="text-3xl sm:text-4xl font-black text-[#FE8D00] font-mono">4+</div>
-            <div className="text-xs sm:text-sm font-bold text-white mt-1">Corredores Globais</div>
-            <div className="text-[11px] text-neutral-400">Angola • Ásia • Europa • Américas</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1">Corredores Globais</div>
+            <div className="text-[11px] text-slate-500">Angola • Ásia • Europa • Américas</div>
           </div>
-          <div className="p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800/80">
-            <div className="text-3xl sm:text-4xl font-black text-white font-mono">NIF</div>
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-colors">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 font-mono">NIF</div>
             <div className="text-xs sm:text-sm font-bold text-[#FE8D00] mt-1 font-mono">5001963090</div>
-            <div className="text-[11px] text-neutral-400">Sociedade Registada</div>
+            <div className="text-[11px] text-slate-500">Sociedade Registada</div>
           </div>
         </div>
       </section>
 
       {/* 4. Who We Are & Philosophy Section (With Floating Ships & Airplanes Background) */}
-      <section className="relative py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden rounded-3xl my-8 bg-neutral-950/70 border border-neutral-900 shadow-2xl">
+      <section className="relative py-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden rounded-3xl my-8 bg-white border border-slate-200 shadow-xl">
         {/* Floating Ship and Airplane Background Animations */}
         <FloatingLogisticsBackground />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Image Collage with Golden Highlights */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl overflow-hidden border border-neutral-800 shadow-[0_0_40px_rgba(254,141,0,0.15)] group">
+            <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-xl group">
               <img
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80"
                 alt="Ashled Soluções Corporate"
                 referrerPolicy="no-referrer"
                 className="w-full h-[440px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 
               {/* Floating Badge on Image */}
-              <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-black/85 backdrop-blur-md border border-[#FE8D00]/40">
+              <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-[#FE8D00]/50 text-white shadow-2xl">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[#FE8D00] text-black font-black flex items-center justify-center shrink-0">
                     A
@@ -171,28 +171,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
             </div>
 
             {/* Accent Floating Badge */}
-            <div className="absolute -top-4 -right-4 p-4 rounded-2xl bg-neutral-900 border border-[#FE8D00] text-white shadow-2xl hidden sm:flex items-center gap-3">
+            <div className="absolute -top-4 -right-4 p-4 rounded-2xl bg-white border border-slate-200 text-slate-900 shadow-xl hidden sm:flex items-center gap-3">
               <ShieldCheck className="w-6 h-6 text-[#FE8D00]" />
               <div className="text-left">
-                <div className="text-xs font-bold text-white">Sede Oficial</div>
-                <div className="text-[11px] text-neutral-400">Ilha do Cabo, Luanda</div>
+                <div className="text-xs font-bold text-slate-900">Sede Oficial</div>
+                <div className="text-[11px] text-slate-500">Ilha do Cabo, Luanda</div>
               </div>
             </div>
           </div>
 
           {/* Right Column: Mission & Philosophy */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-[#FE8D00]" />
               <span>Quem Somos & Filosofia</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
               A Solução Certa, <span className="text-[#FE8D00]">Coordenada com Rigor.</span>
             </h2>
 
-            <p className="text-base text-neutral-300 leading-relaxed">
-              A <strong>Ashled Soluções Comércio e Prestação de Serviços, Lda</strong> é uma empresa focada em soluções práticas, dedicada a prestar serviços de qualidade, orientação profissional, soluções empresariais, conexões estratégicas e coordenação de projectos.
+            <p className="text-base text-slate-600 leading-relaxed">
+              A <strong className="text-slate-900">Ashled Soluções Comércio e Prestação de Serviços, Lda</strong> é uma empresa focada em soluções práticas, dedicada a prestar serviços de qualidade, orientação profissional, soluções empresariais, conexões estratégicas e coordenação de projectos.
             </p>
 
             {/* 4 Pillars of Philosophy */}
@@ -205,10 +205,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800 hover:border-[#FE8D00]/50 transition-colors"
+                  className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-[#FE8D00]/60 transition-colors shadow-xs"
                 >
-                  <div className="text-xs font-bold text-[#FE8D00]">{item.title}</div>
-                  <div className="text-[11px] text-neutral-400 mt-0.5">{item.desc}</div>
+                  <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FE8D00]" />
+                    {item.title}
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-0.5">{item.desc}</div>
                 </div>
               ))}
             </div>
@@ -216,14 +219,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
             <div className="pt-4 flex flex-wrap gap-4">
               <button
                 onClick={() => onNavigate('about')}
-                className="px-6 py-3 rounded-xl bg-white text-black hover:bg-[#FE8D00] font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-lg"
+                className="px-6 py-3 rounded-xl bg-slate-900 text-white hover:bg-[#FE8D00] hover:text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
               >
                 <span>Conhecer a Nossa História</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onOpenQuote()}
-                className="px-6 py-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider border border-neutral-700 hover:border-[#FE8D00] transition-all cursor-pointer"
+                className="px-6 py-3 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md"
               >
                 <span>Pedir Cotação Rápida</span>
               </button>
@@ -233,22 +236,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
       </section>
 
       {/* 5. The 6 Core Services with Real Photography & Hover Animation */}
-      <section className="py-20 bg-neutral-950 border-y border-neutral-900 px-4 sm:px-8 lg:px-12">
+      <section className="py-20 bg-slate-100/70 border-y border-slate-200 px-4 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
-                <Layers className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
+                <Layers className="w-3.5 h-3.5 text-[#FE8D00]" />
                 <span>Os Nossos 6 Pilares de Atuação</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
                 Serviços & Soluções Empresariais
               </h2>
             </div>
 
             <button
               onClick={() => onNavigate('services')}
-              className="px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-[#FE8D00] text-white hover:text-black font-bold text-xs uppercase tracking-wider border border-neutral-700 hover:border-[#FE8D00] transition-all flex items-center gap-2 cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-white hover:bg-[#FE8D00] text-slate-800 hover:text-black font-bold text-xs uppercase tracking-wider border border-slate-300 hover:border-[#FE8D00] transition-all flex items-center gap-2 cursor-pointer shadow-xs"
             >
               <span>Ver Todos em Detalhe</span>
               <ArrowRight className="w-4 h-4" />
@@ -266,20 +269,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.08 }}
-                  className="group rounded-3xl bg-neutral-900 border border-neutral-800 hover:border-[#FE8D00] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-[0_0_30px_rgba(254,141,0,0.25)] hover:-translate-y-1"
+                  className="group rounded-3xl bg-white border border-slate-200 hover:border-[#FE8D00] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-sm"
                 >
                   {/* Image Thumbnail */}
-                  <div className="relative h-48 w-full overflow-hidden bg-neutral-950">
+                  <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                     <img
                       src={srv.image}
                       alt={t(srv.titleKey)}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
                     {/* Floating Icon */}
-                    <div className="absolute top-4 left-4 p-3 rounded-2xl bg-black/80 backdrop-blur-md border border-[#FE8D00]/50 text-[#FE8D00] shadow-lg">
+                    <div className="absolute top-4 left-4 p-3 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200 text-[#FE8D00] shadow-md">
                       <Icon className="w-5 h-5" />
                     </div>
 
@@ -292,21 +295,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                   {/* Body Content */}
                   <div className="p-6 space-y-4 flex-grow flex flex-col justify-between">
                     <div className="space-y-2">
-                      <h3 className="text-xl font-black text-white group-hover:text-[#FE8D00] transition-colors">
+                      <h3 className="text-xl font-black text-slate-900 group-hover:text-[#FE8D00] transition-colors">
                         {t(srv.titleKey)}
                       </h3>
-                      <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed line-clamp-3">
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
                         {t(srv.descKey)}
                       </p>
                     </div>
 
-                    <div className="pt-4 border-t border-neutral-800 flex items-center justify-between">
-                      <span className="text-[11px] text-[#FE8D00] font-mono font-bold">
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-[11px] text-[#b45309] font-mono font-bold">
                         {srv.scopeHighlight}
                       </span>
                       <button
                         onClick={() => onOpenQuote(srv.id)}
-                        className="p-2 rounded-xl bg-neutral-800 text-white hover:bg-[#FE8D00] hover:text-black transition-all cursor-pointer"
+                        className="p-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-[#FE8D00] hover:text-black transition-all cursor-pointer shadow-xs"
                         aria-label={`Solicitar ${t(srv.titleKey)}`}
                       >
                         <ArrowRight className="w-4 h-4" />
@@ -324,11 +327,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
       <section className="py-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
-              <Award className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
+              <Award className="w-3.5 h-3.5 text-[#FE8D00]" />
               <span>Projectos & Impacto em Movimento</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900">
               Casos Reais & Iniciativas Coordenadas
             </h2>
           </div>
@@ -336,14 +339,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
           <div className="flex items-center gap-2">
             <button
               onClick={prevProject}
-              className="p-3 rounded-full bg-neutral-900 hover:bg-[#FE8D00] text-white hover:text-black border border-neutral-800 hover:border-[#FE8D00] transition-all cursor-pointer"
+              className="p-3 rounded-full bg-white hover:bg-[#FE8D00] text-slate-800 hover:text-black border border-slate-300 hover:border-[#FE8D00] transition-all cursor-pointer shadow-xs"
               aria-label="Projecto Anterior"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextProject}
-              className="p-3 rounded-full bg-neutral-900 hover:bg-[#FE8D00] text-white hover:text-black border border-neutral-800 hover:border-[#FE8D00] transition-all cursor-pointer"
+              className="p-3 rounded-full bg-white hover:bg-[#FE8D00] text-slate-800 hover:text-black border border-slate-300 hover:border-[#FE8D00] transition-all cursor-pointer shadow-xs"
               aria-label="Próximo Projecto"
             >
               <ChevronRight className="w-5 h-5" />
@@ -352,7 +355,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
         </div>
 
         {/* Project Slide Card */}
-        <div className="relative rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden shadow-2xl">
+        <div className="relative rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={projectSlides[activeProjectSlide].id}
@@ -363,36 +366,36 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
             >
               {/* Image Col (7 cols) */}
-              <div className="lg:col-span-7 h-[340px] sm:h-[420px] relative overflow-hidden bg-black">
+              <div className="lg:col-span-7 h-[340px] sm:h-[420px] relative overflow-hidden bg-slate-100">
                 <img
                   src={projectSlides[activeProjectSlide].image}
                   alt={projectSlides[activeProjectSlide].title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-neutral-900" />
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-[#FE8D00] text-[#FE8D00] text-xs font-mono font-bold">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/80" />
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-900/90 text-[#FE8D00] text-xs font-mono font-bold shadow-md">
                   {projectSlides[activeProjectSlide].location}
                 </div>
               </div>
 
               {/* Text Col (5 cols) */}
               <div className="lg:col-span-5 p-6 sm:p-8 space-y-5">
-                <span className="text-xs font-bold text-[#FE8D00] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#b45309] uppercase tracking-wider">
                   {projectSlides[activeProjectSlide].category}
                 </span>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
                   {projectSlides[activeProjectSlide].title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {projectSlides[activeProjectSlide].description}
                 </p>
 
-                <div className="p-4 rounded-2xl bg-black/80 border border-neutral-800 text-white">
-                  <div className="text-[10px] text-neutral-400 uppercase font-mono">Destaque de Impacto:</div>
-                  <div className="text-lg font-black text-[#FE8D00] mt-0.5">
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 shadow-xs">
+                  <div className="text-[10px] text-slate-500 uppercase font-mono">Destaque de Impacto:</div>
+                  <div className="text-lg font-black text-[#b45309] mt-0.5">
                     {projectSlides[activeProjectSlide].stat}
                   </div>
                 </div>
@@ -400,11 +403,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                 <div className="pt-2 flex items-center gap-4">
                   <button
                     onClick={() => onOpenQuote()}
-                    className="px-6 py-3 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(254,141,0,0.3)] cursor-pointer"
+                    className="px-6 py-3 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
                   >
                     Desenvolver Projecto Similar
                   </button>
-                  <span className="text-xs font-mono text-neutral-400">
+                  <span className="text-xs font-mono text-slate-500">
                     0{activeProjectSlide + 1} / 0{projectSlides.length}
                   </span>
                 </div>
@@ -415,25 +418,25 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
       </section>
 
       {/* 7. Interactive Scope Simulator */}
-      <section className="py-16 bg-neutral-950 border-t border-neutral-900 px-4 sm:px-8 lg:px-12">
+      <section className="py-16 bg-slate-100/60 border-t border-slate-200 px-4 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <ScopeEstimator onStartProject={(srvId) => onOpenQuote(srvId)} />
         </div>
       </section>
 
       {/* 8. Global Corridors & China Bridge with Particle Network */}
-      <section className="relative py-24 px-4 sm:px-8 lg:px-12 overflow-hidden bg-black">
-        <NetworkCanvas density={35} className="opacity-40" />
+      <section className="relative py-24 px-4 sm:px-8 lg:px-12 overflow-hidden bg-white border-t border-slate-200">
+        <NetworkCanvas density={25} className="opacity-20 pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="inline-block px-3.5 py-1.5 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
+            <span className="inline-block px-3.5 py-1.5 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
               Ponte Estratégica Internacional
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
               Conectando Angola ao Mundo & o Mundo a Angola
             </h2>
-            <p className="text-sm sm:text-base text-neutral-300">
+            <p className="text-sm sm:text-base text-slate-600">
               Presença e parceiros activos nos principais eixos de manufatura, logística e tecnologia.
             </p>
           </div>
@@ -442,9 +445,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
             {GLOBAL_HUBS_DATA.map((hub) => (
               <div
                 key={hub.id}
-                className="p-6 rounded-3xl bg-neutral-900/90 border border-neutral-800 hover:border-[#FE8D00] transition-all space-y-4 backdrop-blur-md group hover:shadow-[0_0_25px_rgba(254,141,0,0.3)]"
+                className="p-6 rounded-3xl bg-slate-50 border border-slate-200 hover:border-[#FE8D00] transition-all space-y-4 shadow-sm group hover:shadow-xl"
               >
-                <div className="h-36 rounded-2xl overflow-hidden bg-neutral-950">
+                <div className="h-36 rounded-2xl overflow-hidden bg-slate-100">
                   <img
                     src={hub.image}
                     alt={hub.name}
@@ -453,11 +456,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                   />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono text-[#FE8D00] font-bold uppercase block">
+                  <span className="text-[10px] font-mono text-[#b45309] font-bold uppercase block">
                     {hub.city}
                   </span>
-                  <h4 className="text-lg font-black text-white mt-1">{hub.name}</h4>
-                  <p className="text-xs text-neutral-400 mt-1 leading-snug">{hub.role}</p>
+                  <h4 className="text-lg font-black text-slate-900 mt-1">{hub.name}</h4>
+                  <p className="text-xs text-slate-600 mt-1 leading-snug">{hub.role}</p>
                 </div>
               </div>
             ))}
@@ -466,7 +469,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
           <div className="text-center pt-4">
             <button
               onClick={() => onNavigate('global')}
-              className="px-8 py-4 rounded-xl bg-white text-black hover:bg-[#FE8D00] font-black text-xs uppercase tracking-wider transition-all shadow-xl cursor-pointer"
+              className="px-8 py-4 rounded-xl bg-slate-900 text-white hover:bg-[#FE8D00] hover:text-black font-black text-xs uppercase tracking-wider transition-all shadow-lg cursor-pointer"
             >
               Explorar Toda a Rede Global Ashled
             </button>

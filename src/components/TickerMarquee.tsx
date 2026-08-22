@@ -7,14 +7,14 @@ export const TickerMarquee: React.FC = () => {
   const items = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
 
   return (
-    <div className="w-full overflow-hidden bg-black/90 border-y border-[#FE8D00]/20 py-3 relative z-20 backdrop-blur-md">
+    <div className="w-full overflow-hidden bg-white/95 border-y border-slate-200 py-3 relative z-20 backdrop-blur-md shadow-xs">
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-8">
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-300"
+            className="flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700"
           >
-            <span className="text-white hover:text-[#FE8D00] transition-colors whitespace-nowrap">
+            <span className="text-slate-900 hover:text-[#FE8D00] transition-colors whitespace-nowrap">
               {item}
             </span>
             <span className="w-2 h-2 rounded-full bg-[#FE8D00] shadow-[0_0_8px_#FE8D00] inline-block shrink-0" />
