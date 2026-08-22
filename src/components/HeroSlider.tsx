@@ -51,7 +51,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
   const currentSlide: HeroSlide = HERO_SLIDES[currentSlideIndex];
 
   return (
-    <div className="relative w-full min-h-[580px] sm:min-h-[660px] lg:min-h-[720px] bg-black text-white overflow-hidden flex items-center">
+    <div className="relative w-full min-h-[640px] sm:min-h-[700px] lg:min-h-[780px] bg-black text-white overflow-hidden flex items-center">
       {/* Background Image Carousel with Fade Transitions */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -75,16 +75,16 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
         </motion.div>
       </AnimatePresence>
 
-      {/* Main Slide Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-24 sm:py-28 w-full">
-        <div className="max-w-3xl space-y-6">
+      {/* Main Slide Content - Generous padding to clear the 2-tier header */}
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 sm:pt-36 lg:pt-44 pb-24 sm:pb-32 w-full">
+        <div className="max-w-3xl space-y-6 sm:space-y-8">
           {/* Slide Headline */}
           <motion.h1
             key={`title-${currentSlide.id}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]"
+            className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] sm:leading-[1.12]"
           >
             {t(currentSlide.titleKey, currentSlide.titleFallback)}
           </motion.h1>
@@ -106,12 +106,12 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="pt-4 flex flex-wrap items-center gap-4"
+            className="pt-2 sm:pt-4 flex flex-wrap items-center gap-4 sm:gap-5"
           >
             <button
               id={`hero-slide-cta-btn-${currentSlide.id}`}
               onClick={() => onOpenQuote(currentSlide.serviceId)}
-              className="px-8 py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-sm tracking-wide uppercase transition-all shadow-[0_0_30px_rgba(254,141,0,0.4)] hover:shadow-[0_0_40px_rgba(254,141,0,0.7)] transform active:scale-95 flex items-center gap-3 cursor-pointer"
+              className="px-7 sm:px-9 py-3.5 sm:py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs sm:text-sm tracking-wide uppercase transition-all shadow-[0_0_30px_rgba(254,141,0,0.4)] hover:shadow-[0_0_40px_rgba(254,141,0,0.7)] transform active:scale-95 flex items-center gap-3 cursor-pointer"
             >
               <span>{currentSlide.ctaText}</span>
               <ArrowRight className="w-4 h-4" />
@@ -119,7 +119,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
 
             <button
               onClick={() => onNavigate('services')}
-              className="px-6 py-4 rounded-xl bg-white/10 hover:bg-[#FE8D00] text-white hover:text-black font-bold text-sm tracking-wide backdrop-blur-md transition-all flex items-center gap-2 cursor-pointer border-0"
+              className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-white/10 hover:bg-[#FE8D00] text-white hover:text-black font-bold text-xs sm:text-sm tracking-wide backdrop-blur-md transition-all flex items-center gap-2 cursor-pointer border-0"
             >
               <span>{t('exploreServices', 'Explorar Todos os Serviços')}</span>
             </button>

@@ -110,9 +110,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
   };
 
   return (
-    <div className="pt-24 pb-20 bg-slate-50 text-slate-900 min-h-screen">
+    <div className="pt-28 sm:pt-32 lg:pt-36 pb-28 md:pb-20 bg-slate-50 text-slate-900 min-h-screen">
       {/* Header Banner */}
-      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
+      <section className="relative py-16 sm:py-24 px-5 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80"
@@ -123,12 +123,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-900/60" />
         </div>
 
-        <div className="max-w-7xl mx-auto space-y-4 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
-            <Phone className="w-3.5 h-3.5" />
+        <div className="max-w-7xl mx-auto space-y-4 sm:space-y-5 relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
+            <Phone className="w-4 h-4" />
             <span>{t('navContact', 'Contactos & Localização')}</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
             {t('contactTitle', 'Fale Connosco & Agende Reunião')}
           </h1>
           <p className="text-base sm:text-xl text-slate-300 max-w-3xl leading-relaxed">
@@ -138,15 +138,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
       </section>
 
       {/* Main Grid: Form + Info + Map */}
-      <section className="py-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <section className="py-16 sm:py-24 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           {/* Left Column: Interactive Contact Form (7 cols) */}
-          <div className="lg:col-span-7 p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div className="lg:col-span-7 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-7">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-5">
               <div>
-                <h3 className="text-xl font-black text-slate-900">Envie a sua Mensagem ou Pedido</h3>
+                <h3 className="text-2xl font-black text-slate-900">Envie a sua Mensagem ou Pedido</h3>
               </div>
-              <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-[#FE8D00] shadow-xs">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-[#FE8D00] shadow-xs">
                 <MessageSquare className="w-5 h-5" />
               </div>
             </div>

@@ -59,9 +59,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
   ];
 
   return (
-    <div className="pt-24 pb-20 bg-slate-50 text-slate-900 min-h-screen">
+    <div className="pt-28 sm:pt-32 lg:pt-36 pb-28 md:pb-20 bg-slate-50 text-slate-900 min-h-screen">
       {/* Header Banner with Rich Image & Overlay */}
-      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
+      <section className="relative py-16 sm:py-24 px-5 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
@@ -72,12 +72,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-900/60" />
         </div>
 
-        <div className="max-w-7xl mx-auto space-y-4 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
-            <Building className="w-3.5 h-3.5" />
+        <div className="max-w-7xl mx-auto space-y-4 sm:space-y-5 relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
+            <Building className="w-4 h-4" />
             <span>{t('navAbout', 'Sobre a Nossa Empresa')}</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
             {t('aboutTitle', 'Quem Somos & A Nossa Missão')}
           </h1>
           <p className="text-base sm:text-xl text-slate-300 max-w-3xl leading-relaxed">
@@ -87,10 +87,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
       </section>
 
       {/* Main Narrative & Values */}
-      <section className="py-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-20">
+      <section className="py-16 sm:py-24 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-20 sm:space-y-28">
         {/* Two-Column Story with Image */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-6 space-y-6 sm:space-y-7">
             <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
               Identidade Corporativa
             </span>
@@ -104,12 +104,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
               {t('aboutP2')}
             </p>
 
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1">
-              <div className="text-xs font-mono font-bold text-[#b45309]">
+            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1.5">
+              <div className="text-xs font-mono font-bold text-[#b45309] tracking-wider">
                 REGISTO COMERCIAL OFICIAL
               </div>
-              <div className="text-xs text-slate-700">
-                {COMPANY_INFO.legalName} • NIF: <strong className="text-slate-900 font-mono">{COMPANY_INFO.nif}</strong>
+              <div className="text-xs sm:text-sm text-slate-700">
+                {COMPANY_INFO.legalName} • NIF: <strong className="text-slate-900 font-mono tracking-wider">{COMPANY_INFO.nif}</strong>
               </div>
             </div>
           </div>
@@ -119,10 +119,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
               src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80"
               alt="Ashled Team and Partners"
               referrerPolicy="no-referrer"
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[380px] sm:h-[450px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700 text-xs text-slate-200 shadow-xl">
+            <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700 text-xs sm:text-sm text-slate-200 shadow-xl leading-relaxed">
               &ldquo;Acreditamos que a qualidade está na forma como comunicamos, coordenamos e entregamos cada projeto.&rdquo;
             </div>
           </div>

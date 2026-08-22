@@ -69,59 +69,60 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white ${
           isScrolled
             ? 'shadow-md border-b border-slate-200'
-            : 'border-b border-slate-200/90'
+            : 'border-b border-slate-200'
         }`}
       >
-        {/* Top Executive Micro-Bar (Always Visible & Prominent) */}
-        <div className="bg-slate-900 text-white border-b border-slate-800 py-1.5 px-4 sm:px-6 lg:px-8">
+        {/* Top Executive Micro-Bar (Adaptive Spacing for Mobile & Desktop) */}
+        <div className="bg-slate-900 text-white border-b border-slate-800 py-2 sm:py-2.5 px-4 sm:px-6 lg:px-10">
           <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] sm:text-xs">
             {/* Left info: Address, NIF & Hours */}
-            <div className="flex items-center gap-3 sm:gap-6">
-              <span className="hidden sm:flex items-center gap-1.5 text-slate-300 font-medium">
-                <MapPin className="w-3.5 h-3.5 text-[#FE8D00]" />
+            <div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
+              <span className="hidden sm:flex items-center gap-2 text-slate-300 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
                 <span>{COMPANY_INFO.address}</span>
               </span>
 
               <span className="flex items-center gap-1.5 text-slate-300">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#FE8D00]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
                 <span>NIF:</span>
-                <strong className="text-[#FE8D00] font-mono font-bold">{COMPANY_INFO.nif}</strong>
+                <strong className="text-[#FE8D00] font-mono font-bold tracking-wider">{COMPANY_INFO.nif}</strong>
               </span>
 
-              <span className="hidden md:flex items-center gap-1.5 text-slate-400">
-                <Clock className="w-3 h-3 text-[#FE8D00]" />
+              <span className="hidden lg:flex items-center gap-1.5 text-slate-400">
+                <Clock className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
                 <span>Seg - Sex: 08:00 - 17:30</span>
               </span>
             </div>
 
             {/* Right info: Direct Phone, Official Email & Trade Corridor */}
-            <div className="flex items-center gap-3 sm:gap-5">
+            <div className="flex items-center gap-3 sm:gap-6">
               <a
                 href={`tel:${COMPANY_INFO.phoneRaw}`}
-                className="hover:text-[#FE8D00] transition-colors flex items-center gap-1 font-bold text-white"
+                className="hover:text-[#FE8D00] transition-colors flex items-center gap-1.5 font-bold text-white tracking-wide"
               >
-                <Phone className="w-3.5 h-3.5 text-[#FE8D00]" />
+                <Phone className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
                 <span>{COMPANY_INFO.phone}</span>
               </a>
 
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
-                className="hidden sm:flex items-center gap-1 hover:text-[#FE8D00] text-slate-300 transition-colors"
+                className="hidden sm:flex items-center gap-1.5 hover:text-[#FE8D00] text-slate-300 transition-colors"
               >
-                <Mail className="w-3.5 h-3.5 text-[#FE8D00]" />
+                <Mail className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
                 <span>geral@ashled.com</span>
               </a>
 
-              <span className="px-2 py-0.5 rounded-full bg-[#FE8D00] text-black font-black text-[10px] tracking-wide uppercase shadow-xs">
-                Angola ↔ China & Global
+              <span className="px-2.5 py-0.5 rounded-full bg-[#FE8D00] text-black font-black text-[10px] tracking-wider uppercase shadow-xs">
+                Angola ↔ Global
               </span>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white py-2">
-          <div className="flex items-center justify-between gap-4">
-            {/* Brand Logo with clean pure white breathing room */}
+        {/* Main Nav Bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 bg-white py-3 sm:py-3.5">
+          <div className="flex items-center justify-between gap-4 sm:gap-8">
+            {/* Brand Logo with pure white breathing room */}
             <button
               onClick={() => handleNavClick('home')}
               className="flex items-center focus:outline-none cursor-pointer shrink-0 transition-opacity hover:opacity-95 bg-white py-0.5"
@@ -130,8 +131,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
               <BrandLogo size="md" lightMode={true} />
             </button>
 
-            {/* Desktop Navigation - Clean, Spaced, Organized with strictly 5 items */}
-            <nav className="hidden md:flex items-center gap-1.5 lg:gap-2 bg-slate-50 px-2.5 py-1.5 rounded-2xl border border-slate-200">
+            {/* Desktop Navigation - Spacious & Clean */}
+            <nav className="hidden md:flex items-center gap-1.5 lg:gap-2.5 bg-slate-50 px-3 py-1.5 rounded-2xl border border-slate-200/90 shadow-xs">
               {navItems.map((item) => {
                 const isActive = currentPage === item.id;
                 const IconComponent = item.icon;
@@ -140,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                     key={item.id}
                     id={`nav-link-${item.id}`}
                     onClick={() => handleNavClick(item.id)}
-                    className={`relative px-3.5 py-2 rounded-xl text-xs lg:text-sm font-bold tracking-wide transition-all flex items-center gap-2 cursor-pointer ${
+                    className={`relative px-3.5 lg:px-4 py-2 lg:py-2.5 rounded-xl text-xs lg:text-sm font-bold tracking-wide transition-all flex items-center gap-2 cursor-pointer ${
                       isActive
                         ? 'bg-[#FE8D00] text-black font-black shadow-sm'
                         : 'text-slate-700 hover:text-slate-950 hover:bg-white'
@@ -154,18 +155,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
             </nav>
 
             {/* Right Header Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 sm:gap-4">
               {/* Language Selector Dropdown */}
               <div className="relative">
                 <button
                   id="lang-selector-desktop-btn"
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold border border-slate-200 hover:border-[#FE8D00] transition-all cursor-pointer shadow-xs"
+                  className="flex items-center gap-2 px-3.5 py-2 lg:py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold border border-slate-200 hover:border-[#FE8D00] transition-all cursor-pointer shadow-xs"
                   aria-expanded={langDropdownOpen}
                 >
-                  <Globe className="w-3.5 h-3.5 text-[#FE8D00]" />
+                  <Globe className="w-4 h-4 text-[#FE8D00]" />
                   <span className="uppercase tracking-wider font-bold">{language}</span>
-                  <ChevronDown className="w-3 h-3 text-slate-500" />
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
                 </button>
 
                 <AnimatePresence>
@@ -175,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 z-50 max-h-80 overflow-y-auto divide-y divide-slate-100"
+                      className="absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl p-2.5 z-50 max-h-80 overflow-y-auto divide-y divide-slate-100"
                     >
                       {languagesList.map((lang) => (
                         <button
@@ -184,15 +185,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                             setLanguage(lang.code);
                             setLangDropdownOpen(false);
                           }}
-                          className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                          className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                             language === lang.code
                               ? 'bg-[#FE8D00] text-black font-bold shadow-sm'
                               : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                           }`}
                         >
-                          <span className="flex items-center gap-2.5">
+                          <span className="flex items-center gap-3">
                             <span className="text-base">{lang.flag}</span>
-                            <span className="text-left font-medium">{lang.label}</span>
+                            <span className="text-left font-semibold">{lang.label}</span>
                           </span>
                           {language === lang.code && <span className="text-xs font-black">✓</span>}
                         </button>
@@ -206,9 +207,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
               <button
                 id="header-quote-cta-btn"
                 onClick={() => onOpenQuote()}
-                className="hidden sm:flex px-5 py-2.5 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs tracking-wider uppercase shadow-[0_2px_15px_rgba(254,141,0,0.35)] hover:shadow-[0_4px_20px_rgba(254,141,0,0.5)] transform active:scale-95 transition-all items-center gap-2 cursor-pointer shrink-0"
+                className="hidden sm:flex px-5 lg:px-6 py-2.5 lg:py-3 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs lg:text-sm tracking-wider uppercase shadow-md hover:shadow-lg transform active:scale-95 transition-all items-center gap-2 cursor-pointer shrink-0"
               >
-                <Sparkles className="w-3.5 h-3.5 text-black" />
+                <Sparkles className="w-4 h-4 text-black" />
                 <span>{t('requestQuote', 'Pedir Cotação')}</span>
               </button>
 
@@ -216,7 +217,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
               <button
                 id="mobile-menu-toggle-btn"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="flex md:hidden p-2.5 rounded-xl bg-[#FE8D00] text-black font-bold shadow-md focus:outline-none cursor-pointer"
+                className="flex md:hidden p-3 rounded-xl bg-[#FE8D00] text-black font-bold shadow-md focus:outline-none cursor-pointer"
                 aria-label="Abrir Menu Principal"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -225,19 +226,19 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
           </div>
         </div>
 
-        {/* Mobile Drawer Menu - Clean and spaced with strictly 5 items */}
+        {/* Mobile Drawer Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t border-slate-200 px-5 py-6 space-y-5 shadow-2xl"
+              className="md:hidden bg-white border-t border-slate-200 px-6 py-6 space-y-6 shadow-2xl"
             >
-              <div className="text-[11px] font-black text-[#FE8D00] uppercase tracking-widest px-1">
-                Menu de Navegação:
+              <div className="text-xs font-black text-[#FE8D00] uppercase tracking-wider px-1">
+                Navegação Principal:
               </div>
-              <nav className="flex flex-col space-y-2">
+              <nav className="flex flex-col space-y-2.5">
                 {navItems.map((item) => {
                   const IconComponent = item.icon;
                   const isActive = currentPage === item.id;
@@ -245,7 +246,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
                     <button
                       key={item.id}
                       onClick={() => handleNavClick(item.id)}
-                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center gap-3 border cursor-pointer ${
+                      className={`w-full text-left px-4 py-3.5 rounded-2xl text-sm font-bold transition-all flex items-center gap-3.5 border cursor-pointer ${
                         isActive
                           ? 'bg-[#FE8D00] text-black border-[#FE8D00] shadow-md font-black'
                           : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'

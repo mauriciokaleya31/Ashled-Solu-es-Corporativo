@@ -83,9 +83,9 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
       : showcaseProjects.filter((p) => p.category === projectCategory);
 
   return (
-    <div className="pt-24 pb-20 bg-slate-50 text-slate-900 min-h-screen">
+    <div className="pt-28 sm:pt-32 lg:pt-36 pb-28 md:pb-20 bg-slate-50 text-slate-900 min-h-screen">
       {/* Header Banner with Rich Image */}
-      <section className="relative py-20 px-4 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
+      <section className="relative py-16 sm:py-24 px-5 sm:px-8 lg:px-12 bg-slate-900 text-white border-b border-slate-800 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80"
@@ -96,12 +96,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-900/60" />
         </div>
 
-        <div className="max-w-7xl mx-auto space-y-4 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
-            <FolderKanban className="w-3.5 h-3.5" />
+        <div className="max-w-7xl mx-auto space-y-4 sm:space-y-5 relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
+            <FolderKanban className="w-4 h-4" />
             <span>{t('navProjects', 'Projectos & Impacto')}</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
             Desenvolvimento e Gestão de Projectos
           </h1>
           <p className="text-base sm:text-xl text-slate-300 max-w-3xl leading-relaxed">
@@ -111,8 +111,8 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
       </section>
 
       {/* The 7-Stage Execution Flow */}
-      <section className="py-16 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
+      <section className="py-16 sm:py-24 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-12">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
             Metodologia Ashled
           </span>
@@ -121,18 +121,18 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
           {lifecycleStages.map((stage, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-[#FE8D00] transition-all flex flex-col justify-between shadow-xs hover:shadow-md"
+              className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-[#FE8D00] transition-all flex flex-col justify-between shadow-xs hover:shadow-md"
             >
               <div>
-                <span className="text-xs font-black font-mono text-black px-2 py-0.5 rounded bg-[#FE8D00] mb-2 inline-block">
+                <span className="text-xs font-black font-mono text-black px-2.5 py-1 rounded bg-[#FE8D00] mb-3 inline-block">
                   {stage.num}
                 </span>
-                <h4 className="text-sm font-black text-slate-900 mb-1">{stage.title}</h4>
-                <p className="text-[11px] text-slate-500 leading-snug">{stage.desc}</p>
+                <h4 className="text-base font-black text-slate-900 mb-1.5">{stage.title}</h4>
+                <p className="text-xs text-slate-500 leading-relaxed">{stage.desc}</p>
               </div>
             </div>
           ))}
@@ -140,13 +140,13 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
       </section>
 
       {/* Projects Showcase Cards with Photography */}
-      <section className="py-12 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-200 pb-4">
-          <h3 className="text-xl font-black text-slate-900">Casos de Estudo & Iniciativas</h3>
-          <div className="flex items-center gap-2">
+      <section className="py-10 sm:py-16 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto space-y-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-200 pb-6">
+          <h3 className="text-2xl font-black text-slate-900">Casos de Estudo & Iniciativas</h3>
+          <div className="flex flex-wrap items-center gap-2.5">
             <button
               onClick={() => setProjectCategory('all')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                 projectCategory === 'all'
                   ? 'bg-[#FE8D00] text-black shadow-sm font-black'
                   : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
@@ -156,7 +156,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
             </button>
             <button
               onClick={() => setProjectCategory('commercial')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                 projectCategory === 'commercial'
                   ? 'bg-[#FE8D00] text-black shadow-sm font-black'
                   : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
@@ -166,7 +166,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
             </button>
             <button
               onClick={() => setProjectCategory('social')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                 projectCategory === 'social'
                   ? 'bg-[#FE8D00] text-black shadow-sm font-black'
                   : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
@@ -177,7 +177,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate, onOpenQu
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
           {filtered.map((p) => (
             <div
               key={p.id}
