@@ -92,10 +92,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-6 space-y-6 sm:space-y-7">
             <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-              Identidade Corporativa
+              {t('corporateIdentityBadge', 'Identidade Corporativa')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">
-              Uma Empresa Angolana com Padrão Executivo Global
+              {t('aboutAngolanGlobalHeading', 'Uma Empresa Angolana com Padrão Executivo Global')}
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               {t('aboutP1')}
@@ -106,10 +106,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
 
             <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1.5">
               <div className="text-xs font-mono font-bold text-[#b45309] tracking-wider">
-                REGISTO COMERCIAL OFICIAL
+                {t('officialCommercialReg', 'REGISTO COMERCIAL OFICIAL')}
               </div>
               <div className="text-xs sm:text-sm text-slate-700">
-                {COMPANY_INFO.legalName} • NIF: <strong className="text-slate-900 font-mono tracking-wider">{COMPANY_INFO.nif}</strong>
+                {COMPANY_INFO.legalName} • {t('nifLabel', 'NIF')}: <strong className="text-slate-900 font-mono tracking-wider">{COMPANY_INFO.nif}</strong>
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700 text-xs sm:text-sm text-slate-200 shadow-xl leading-relaxed">
-              &ldquo;Acreditamos que a qualidade está na forma como comunicamos, coordenamos e entregamos cada projeto.&rdquo;
+              {t('aboutQuote', '“Acreditamos que a qualidade está na forma como comunicamos, coordenamos e entregamos cada projeto.”')}
             </div>
           </div>
         </div>
@@ -132,7 +132,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
         <div className="space-y-10">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-              O Nosso Método
+              {t('ourMethodBadge', 'O Nosso Método')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900">
               {t('philTitle', 'A Nossa Filosofia em 4 Passos')}
@@ -159,7 +159,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
         <div className="space-y-10 pt-12 border-t border-slate-200">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-              Cultura e Princípios
+              {t('culturePrinciplesBadge', 'Cultura e Princípios')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900">
               {t('valTitle', 'Os Nossos Valores Fundamentais')}
@@ -188,13 +188,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
         {/* Action CTA */}
         <div className="p-8 sm:p-12 rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-2xl text-center space-y-6">
           <h3 className="text-2xl sm:text-3xl font-black text-white">
-            Pronto para transformar a sua necessidade numa solução prática?
+            {t('readyToTransformNeed', 'Pronto para transformar a sua necessidade numa solução prática?')}
           </h3>
           <button
             onClick={onOpenQuote}
             className="px-8 py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider transition-all shadow-[0_4px_20px_rgba(254,141,0,0.4)] cursor-pointer mx-auto"
           >
-            Falar com a Equipa Ashled
+            {t('talkToAshledTeam', 'Falar com a Equipa Ashled')}
           </button>
         </div>
       </section>

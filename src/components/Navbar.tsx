@@ -56,6 +56,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
     { code: 'zh', label: '中文 (Chinese)', flag: '🇨🇳' },
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
     { code: 'es', label: 'Español', flag: '🇪🇸' },
+    { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+    { code: 'it', label: 'Italiano', flag: '🇮🇹' },
+    { code: 'ar', label: 'العربية (Arabic)', flag: '🇦🇪' },
+    { code: 'ru', label: 'Русский (Russian)', flag: '🇷🇺' },
+    { code: 'ja', label: '日本語 (Japanese)', flag: '🇯🇵' },
+    { code: 'tr', label: 'Türkçe', flag: '🇹🇷' },
+    { code: 'hi', label: 'हिन्दी (Hindi)', flag: '🇮🇳' },
   ];
 
   const handleNavClick = (page: NavPage) => {
@@ -84,13 +91,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
 
               <span className="flex items-center gap-1.5 text-slate-300">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
-                <span>NIF:</span>
+                <span>{t('nifLabel', 'NIF')}:</span>
                 <strong className="text-[#FE8D00] font-mono font-bold tracking-wider">{COMPANY_INFO.nif}</strong>
               </span>
 
               <span className="hidden lg:flex items-center gap-1.5 text-slate-400">
                 <Clock className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
-                <span>Seg - Sex: 08:00 - 17:30</span>
+                <span>{t('officeHoursSegSex', 'Seg - Sex: 08:00 - 17:30')}</span>
               </span>
             </div>
 
@@ -113,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
               </a>
 
               <span className="px-2.5 py-0.5 rounded-full bg-[#FE8D00] text-black font-black text-[10px] tracking-wider uppercase shadow-xs">
-                Angola ↔ Global
+                {t('angolaGlobalTrade', 'Angola ↔ Global')}
               </span>
             </div>
           </div>
@@ -236,7 +243,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
               className="md:hidden bg-white border-t border-slate-200 px-6 py-6 space-y-6 shadow-2xl"
             >
               <div className="text-xs font-black text-[#FE8D00] uppercase tracking-wider px-1">
-                Navegação Principal:
+                {t('navigationMain', 'Navegação Principal:')}
               </div>
               <nav className="flex flex-col space-y-2.5">
                 {navItems.map((item) => {
@@ -261,8 +268,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
 
               {/* Language selection in mobile menu */}
               <div className="pt-3 border-t border-slate-200 space-y-2">
-                <div className="text-[11px] text-slate-500 font-bold uppercase px-1">Idioma / Language:</div>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="text-[11px] text-slate-500 font-bold uppercase px-1">{t('language', 'Idioma / Language')}:</div>
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                   {languagesList.map((lang) => (
                     <button
                       key={lang.code}
@@ -307,7 +314,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
           }`}
         >
           <Home className="w-4 h-4" />
-          <span>Home</span>
+          <span>{t('navHome', 'Home')}</span>
         </button>
 
         <button
@@ -317,7 +324,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
           }`}
         >
           <Users className="w-4 h-4" />
-          <span>Sobre</span>
+          <span>{t('navAbout', 'Sobre')}</span>
         </button>
 
         <button
@@ -335,7 +342,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
           }`}
         >
           <Layers className="w-4 h-4" />
-          <span>Serviços</span>
+          <span>{t('navServices', 'Serviços')}</span>
         </button>
 
         <button
@@ -345,7 +352,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenQ
           }`}
         >
           <Phone className="w-4 h-4" />
-          <span>Contactos</span>
+          <span>{t('navContact', 'Contactos')}</span>
         </button>
       </div>
     </>

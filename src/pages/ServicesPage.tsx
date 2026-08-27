@@ -12,9 +12,10 @@ import {
   Sparkles,
   ArrowRight,
   ShieldCheck,
+  Users,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { SERVICES_DATA, COMPANY_INFO } from '../data/companyData';
+import { SERVICES_DATA, COMPANY_INFO, AIRLINES_LIST } from '../data/companyData';
 import { ScopeEstimator } from '../components/ScopeEstimator';
 import { NavPage } from '../types';
 
@@ -35,6 +36,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenQu
         return Globe;
       case 'PlaneTakeoff':
         return PlaneTakeoff;
+      case 'Users':
+        return Users;
       case 'Layers':
         return Layers;
       case 'Search':
@@ -71,10 +74,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenQu
             <span>{t('navServices', 'Nossos Serviços')}</span>
           </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
-            {t('servicesTitle', 'O Que Fazemos & Pilares de Actuação')}
+            {t('servicesTitle', 'O Que Fazemos & Prestação de Serviços')}
           </h1>
           <p className="text-base sm:text-xl text-slate-300 max-w-3xl leading-relaxed">
-            {t('servicesSubtitle')}
+            {t('servicesSubtitle', 'Soluções práticas, orientação profissional e coordenação executiva com elevados padrões éticos e técnicos.')}
           </p>
         </div>
       </section>
@@ -90,7 +93,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenQu
                 : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            Todos os 6 Pilares
+            {t('allServicesTab', 'Todos os Serviços')} ({SERVICES_DATA.length})
           </button>
 
           {SERVICES_DATA.map((srv) => (
@@ -138,7 +141,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenQu
                   </div>
 
                   <div className="absolute top-4 right-4 px-4 py-1.5 rounded-full bg-[#FE8D00] text-black text-xs font-black uppercase font-mono shadow-md">
-                    {srv.scopeHighlight}
+                    {t(srv.scopeHighlightKey || '', srv.scopeHighlight)}
                   </div>
                 </div>
 
@@ -152,16 +155,64 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenQu
                       {t(srv.descKey)}
                     </p>
 
+                    {/* Special Airline Partner Badges for Air Cargo */}
+                    {srv.id === 'air-cargo' && (
+                      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                          <PlaneTakeoff className="w-4 h-4 text-[#FE8D00]" />
+                          <span>{t('airlinePartnersLabel', 'Companhias Aéreas com Agenciamento & Reserva de Espaço:')}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {AIRLINES_LIST.map((airline) => (
+                            <span
+                              key={airline.code}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-800 shadow-2xs"
+                            >
+                              <span>{airline.flag}</span>
+                              <span>{airline.name}</span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Special Staffing Highlights */}
+                    {srv.id === 'staffing' && (
+                      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
+                        <div className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                          <Users className="w-4 h-4 text-[#FE8D00]" />
+                          <span>{t('staffProfilesLabel', 'Perfis de Funcionários para Alocação Empresarial:')}</span>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                          {[
+                            t('roleTechMaint', 'Técnicos de Manutenção'),
+                            t('roleLogisticsOps', 'Operadores de Logística'),
+                            t('roleAdminHR', 'Administrativos & RH'),
+                            t('roleEngIT', 'Engenheiros & TI'),
+                            t('roleSalesSup', 'Supervisores de Vendas'),
+                            t('roleOpsTeams', 'Equipas Operacionais'),
+                          ].map((role, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-[11px] font-bold text-slate-800 text-center truncate"
+                            >
+                              {role}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     {/* Deliverables List */}
                     <div className="space-y-3 pt-4 border-t border-slate-100">
                       <h5 className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-                        Âmbito de Actuação & Entregas Chave:
+                        {t('scopeDeliverablesLabel', 'Âmbito de Actuação & Entregas Chave:')}
                       </h5>
                       <div className="grid grid-cols-1 gap-2.5 text-xs sm:text-sm text-slate-700">
                         {srv.deliverables.map((item, i) => (
                           <div key={i} className="flex items-start gap-3">
                             <CheckCircle2 className="w-4 h-4 text-[#FE8D00] shrink-0 mt-0.5" />
-                            <span>{item}</span>
+                            <span>{srv.deliverableKeys?.[i] ? t(srv.deliverableKeys[i], item) : item}</span>
                           </div>
                         ))}
                       </div>
@@ -170,14 +221,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, onOpenQu
 
                   <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <span className="text-xs text-slate-500 font-mono">
-                      Padrão de Qualidade Ashled
+                      {t('ashledQualityStandard', 'Padrão de Qualidade Ashled')}
                     </span>
                     <button
                       onClick={() => onOpenQuote(srv.id)}
                       className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
                     >
                       <Sparkles className="w-4 h-4 text-black" />
-                      <span>Solicitar Este Serviço</span>
+                      <span>{t('requestThisService', 'Solicitar Este Serviço')}</span>
                     </button>
                   </div>
                 </div>

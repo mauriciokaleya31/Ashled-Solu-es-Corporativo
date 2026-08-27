@@ -24,15 +24,15 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
   const [activeHub, setActiveHub] = useState<string>('asia');
 
   const connectionPillars = [
-    'Parcerias Empresariais Internacionais (International Business Partnerships)',
-    'Oportunidades de Importação e Exportação (Import & Export Opportunities)',
-    'Relações com Fornecedores e Prestadores Globais (Supplier Relationships)',
-    'Colaborações Estratégicas Bilaterais (Strategic Collaborations)',
-    'Projectos Conjuntos & Joint-Ventures (Joint Projects)',
-    'Oportunidades de Investimento e Negócios (Investment Opportunities)',
-    'Sourcing e Compras Internacionais (International Sourcing)',
-    'Serviços Profissionais e Comerciais (Commercial Services)',
-    'Desenvolvimento de Projectos Transfronteiriços (Cross-Border Projects)',
+    { key: 'connPillar1', fallback: 'Parcerias Empresariais Internacionais (International Business Partnerships)' },
+    { key: 'connPillar2', fallback: 'Oportunidades de Importação e Exportação (Import & Export Opportunities)' },
+    { key: 'connPillar3', fallback: 'Relações com Fornecedores e Prestadores Globais (Supplier Relationships)' },
+    { key: 'connPillar4', fallback: 'Colaborações Estratégicas Bilaterais (Strategic Collaborations)' },
+    { key: 'connPillar5', fallback: 'Projectos Conjuntos & Joint-Ventures (Joint Projects)' },
+    { key: 'connPillar6', fallback: 'Oportunidades de Investimento e Negócios (Investment Opportunities)' },
+    { key: 'connPillar7', fallback: 'Sourcing e Compras Internacionais (International Sourcing)' },
+    { key: 'connPillar8', fallback: 'Serviços Profissionais e Comerciais (Commercial Services)' },
+    { key: 'connPillar9', fallback: 'Desenvolvimento de Projectos Transfronteiriços (Cross-Border Projects)' },
   ];
 
   const selectedHubObj = GLOBAL_HUBS_DATA.find((h) => h.id === activeHub) || GLOBAL_HUBS_DATA[0];
@@ -75,16 +75,16 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
                 &ldquo;{t('globalDesc2')}&rdquo;
               </p>
               <p>
-                Nosso papel é identificar parceiros potenciais, introduzir as partes adequadas, facilitar a comunicação e coordenar oportunidades sólidas de colaboração com segurança jurídica e operacional.
+                {t('globalDesc3', 'Nosso papel é identificar parceiros potenciais, introduzir as partes adequadas, facilitar a comunicação e coordenar oportunidades sólidas de colaboração com segurança jurídica e operacional.')}
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs text-slate-700 space-y-1">
               <div className="font-bold uppercase text-[11px] tracking-wider text-[#b45309]">
-                Ponte Estratégica Angola ↔ China & Global
+                {t('bridgeBadgeLabel', 'Ponte Estratégica Angola ↔ China & Global')}
               </div>
               <p>
-                Conhecimento local profundo somado a conexões internacionais de primeiro nível.
+                {t('bridgeBadgeDesc', 'Conhecimento local profundo somado a conexões internacionais de primeiro nível.')}
               </p>
             </div>
           </div>
@@ -92,14 +92,14 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
           <div className="lg:col-span-5 p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6">
             <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#FE8D00]" />
-              <span>9 Áreas de Conexão Internacional</span>
+              <span>{t('nineConnectionAreas', '9 Áreas de Conexão Internacional')}</span>
             </h3>
 
             <div className="space-y-2 text-xs text-slate-700">
               {connectionPillars.map((p, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#FE8D00] shrink-0 mt-0.5" />
-                  <span className="leading-tight">{p}</span>
+                  <span className="leading-tight">{t(p.key, p.fallback)}</span>
                 </div>
               ))}
             </div>
@@ -111,9 +111,9 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-                Hubs & Corredores Operacionais
+                {t('hubsCorridorsBadge', 'Hubs & Corredores Operacionais')}
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900">Nossa Presença Estratégica</h3>
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900">{t('strategicPresenceTitle', 'Nossa Presença Estratégica')}</h3>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -127,7 +127,7 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
                       : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                   }`}
                 >
-                  {hub.name}
+                  {t(hub.nameKey, hub.name)}
                 </button>
               ))}
             </div>
@@ -143,7 +143,7 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
             <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-100">
               <img
                 src={selectedHubObj.image}
-                alt={selectedHubObj.name}
+                alt={t(selectedHubObj.nameKey, selectedHubObj.name)}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
@@ -156,21 +156,24 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
                   <MapPin className="w-3.5 h-3.5" />
                   <span>{selectedHubObj.city}, {selectedHubObj.country}</span>
                 </div>
-                <h4 className="text-3xl font-black text-slate-900">{selectedHubObj.name}</h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{selectedHubObj.role}</p>
+                <h4 className="text-3xl font-black text-slate-900">{t(selectedHubObj.nameKey, selectedHubObj.name)}</h4>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{t(selectedHubObj.roleKey, selectedHubObj.role)}</p>
               </div>
 
               <div className="space-y-3 bg-slate-50 p-5 rounded-2xl border border-slate-200">
                 <h5 className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-                  Actuação Principal Neste Hub:
+                  {t('hubMainFocusLabel', 'Actuação Principal Neste Hub:')}
                 </h5>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
-                  {selectedHubObj.focus.map((f, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#FE8D00] shrink-0" />
-                      <span>{f}</span>
-                    </div>
-                  ))}
+                  {selectedHubObj.focus.map((f, i) => {
+                    const focusKey = selectedHubObj.focusKeys && selectedHubObj.focusKeys[i] ? selectedHubObj.focusKeys[i] : '';
+                    return (
+                      <div key={i} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#FE8D00] shrink-0" />
+                        <span>{focusKey ? t(focusKey, f) : f}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -180,7 +183,7 @@ export const GlobalNetworkPage: React.FC<GlobalNetworkPageProps> = ({ onNavigate
                   className="px-6 py-3 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-md flex items-center gap-2 cursor-pointer"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-black" />
-                  <span>Conectar com Este Corredor</span>
+                  <span>{t('connectWithThisCorridor', 'Conectar com Este Corredor')}</span>
                 </button>
               </div>
             </div>

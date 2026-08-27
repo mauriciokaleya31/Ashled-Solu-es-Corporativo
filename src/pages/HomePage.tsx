@@ -18,6 +18,7 @@ import {
   Award,
   ChevronLeft,
   ChevronRight,
+  Users,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import {
@@ -50,6 +51,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
         return Globe;
       case 'PlaneTakeoff':
         return PlaneTakeoff;
+      case 'Users':
+        return Users;
       case 'Layers':
         return Layers;
       case 'Search':
@@ -64,37 +67,53 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
   const projectSlides = [
     {
       id: 'p1',
+      titleKey: 'proj1Title',
       title: 'Corredor de Compras Industriais China-Angola',
+      categoryKey: 'proj1Cat',
       category: 'Sourcing & Logística Pesada',
       image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1000&q=80',
+      descKey: 'proj1Desc',
       description: 'Aquisição de maquinaria industrial com auditoria técnica in-loco em Shenzhen e frete marítimo directo para o Porto de Luanda.',
+      statKey: 'proj1Stat',
       stat: '-28% Custos Operacionais',
       location: 'Shenzhen → Luanda',
     },
     {
       id: 'p2',
+      titleKey: 'proj2Title',
       title: 'Transporte e Coordenação de Carga Aérea Crítica',
+      categoryKey: 'proj2Cat',
       category: 'Coordenação Especializada',
       image: 'https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?auto=format&fit=crop&w=1000&q=80',
+      descKey: 'proj2Desc',
       description: 'Gestão integrada de transporte aéreo de peças sobressalentes e equipamentos técnicos com desalfandegamento expedito.',
+      statKey: 'proj2Stat',
       stat: '4 Dias de Trânsito Rápido',
       location: 'Europa → Luanda Hub',
     },
     {
       id: 'p3',
+      titleKey: 'proj3Title',
       title: 'Programa Comunitário de Oportunidades & Qualificação',
+      categoryKey: 'proj3Cat',
       category: 'Desenvolvimento Social',
       image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1000&q=80',
+      descKey: 'proj3Desc',
       description: 'Capacitação prática de mais de 150 jovens em gestão comercial e facilitação de inserção profissional em empresas parceiras.',
+      statKey: 'proj3Stat',
       stat: '150+ Jovens Capacitados',
       location: 'Ilha do Cabo, Luanda',
     },
     {
       id: 'p4',
+      titleKey: 'proj4Title',
       title: 'Solução Integrada Turnkey (One-Stop Hub)',
+      categoryKey: 'proj4Cat',
       category: 'Gestão Global de Fornecedores',
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80',
+      descKey: 'proj4Desc',
       description: 'Centralização de 7 fornecedores diferentes sob um único contrato corporativo, reduzindo atritos burocráticos.',
+      statKey: 'proj4Stat',
       stat: '1 Contrato Único',
       location: 'Luanda, Angola',
     },
@@ -118,23 +137,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
           <div className="p-5 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-all">
             <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#FE8D00] font-mono">6</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-2">Pilares Estratégicos</div>
-            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">Consultoria a Sourcing</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-2">{t('statStrategicPillars', 'Pilares Estratégicos')}</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">{t('statStrategicPillarsDesc', 'Carga Aérea a Staffing')}</div>
           </div>
           <div className="p-5 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-all">
             <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-mono">100%</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-2">Ponto de Contacto Único</div>
-            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">One-Stop Solution</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-2">{t('statSinglePoint', 'Ponto de Contacto Único')}</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">{t('statSinglePointDesc', 'One-Stop Solution')}</div>
           </div>
           <div className="p-5 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-all">
             <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#FE8D00] font-mono">4+</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-2">Corredores Globais</div>
-            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">Angola • Ásia • Europa • Global</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-800 mt-2">{t('statGlobalCorridors', 'Corredores Globais')}</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">{t('statGlobalCorridorsDesc', 'Angola • Ásia • Europa • Global')}</div>
           </div>
           <div className="p-5 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-sm hover:border-[#FE8D00] transition-all">
             <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-mono">NIF</div>
             <div className="text-xs sm:text-sm font-bold text-[#FE8D00] mt-2 font-mono tracking-wider">{COMPANY_INFO.nif}</div>
-            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">Sociedade Registada</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5">{t('statOfficialReg', 'Sociedade Registada')}</div>
           </div>
         </div>
       </section>
@@ -164,7 +183,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                   </div>
                   <div>
                     <div className="text-sm sm:text-base font-black text-white">{COMPANY_INFO.legalName}</div>
-                    <div className="text-xs text-[#FE8D00] font-semibold">{COMPANY_INFO.tagline}</div>
+                    <div className="text-xs text-[#FE8D00] font-semibold">{t('tagline', COMPANY_INFO.tagline)}</div>
                   </div>
                 </div>
               </div>
@@ -174,8 +193,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
             <div className="absolute -top-4 -right-4 p-4 rounded-2xl bg-white border border-slate-200 text-slate-900 shadow-xl hidden sm:flex items-center gap-3">
               <ShieldCheck className="w-6 h-6 text-[#FE8D00]" />
               <div className="text-left">
-                <div className="text-xs font-bold text-slate-900">Sede Oficial</div>
-                <div className="text-[11px] text-slate-500">Ilha do Cabo, Luanda</div>
+                <div className="text-xs font-bold text-slate-900">{t('officialHeadquarters', 'Sede Oficial')}</div>
+                <div className="text-[11px] text-slate-500">{t('capeIslandLuanda', 'Ilha do Cabo, Luanda')}</div>
               </div>
             </div>
           </div>
@@ -184,24 +203,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
           <div className="lg:col-span-6 space-y-6 sm:space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
               <Sparkles className="w-4 h-4 text-[#FE8D00]" />
-              <span>Quem Somos & Filosofia</span>
+              <span>{t('whoWeAreTitle', 'Quem Somos & Filosofia')}</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              A Solução Certa, <span className="text-[#FE8D00]">Coordenada com Rigor.</span>
+              {t('heroTitle', 'A Solução Certa, Coordenada com Rigor.')}
             </h2>
 
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-              A <strong className="text-slate-900">Ashled Soluções Comércio e Prestação de Serviços, Lda</strong> é uma empresa focada em soluções práticas, dedicada a prestar serviços de qualidade, orientação profissional, soluções empresariais, conexões estratégicas e coordenação de projectos.
+              {t('aboutP1', 'A Ashled Soluções Comércio e Prestação de Serviços, Lda é uma empresa focada em soluções práticas, dedicada a prestar serviços de qualidade, orientação profissional, soluções empresariais, conexões estratégicas e coordenação de projectos.')}
             </p>
 
             {/* 4 Pillars of Philosophy */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
               {[
-                { title: '1. Entender a Necessidade', desc: 'Diagnóstico detalhado sem atalhos' },
-                { title: '2. Encontrar a Solução Certa', desc: 'Parceiros e fornecedores qualificados' },
-                { title: '3. Coordenar Profissionalmente', desc: 'Supervisão técnica contínua' },
-                { title: '4. Entregar com Qualidade', desc: 'Padrão executivo garantido' },
+                { title: t('step1Title', '1. Entender a Necessidade'), desc: t('step1Desc', 'Diagnóstico detalhado sem atalhos') },
+                { title: t('step2Title', '2. Encontrar a Solução Certa'), desc: t('step2Desc', 'Parceiros e fornecedores qualificados') },
+                { title: t('step3Title', '3. Coordenar Profissionalmente'), desc: t('step3Desc', 'Supervisão técnica contínua') },
+                { title: t('step4Title', '4. Entregar com Qualidade'), desc: t('step4Desc', 'Padrão executivo garantido') },
               ].map((item, i) => (
                 <div
                   key={i}
@@ -221,14 +240,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                 onClick={() => onNavigate('about')}
                 className="px-7 py-3.5 rounded-xl bg-slate-900 text-white hover:bg-[#FE8D00] hover:text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
               >
-                <span>Conhecer a Nossa História</span>
+                <span>{t('knowOurHistory', 'Conhecer a Nossa História')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onOpenQuote()}
                 className="px-7 py-3.5 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md"
               >
-                <span>Pedir Cotação Rápida</span>
+                <span>{t('requestQuote', 'Pedir Cotação Rápida')}</span>
               </button>
             </div>
           </div>
@@ -242,10 +261,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
                 <Layers className="w-4 h-4 text-[#FE8D00]" />
-                <span>Os Nossos 6 Pilares de Atuação</span>
+                <span>{t('servicesBadge', 'Soluções & Prestação de Serviços')}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-                Serviços & Soluções Empresariais
+                {t('servicesHeadingHome', 'Carga Aérea, Staffing & Gestão Empresarial')}
               </h2>
             </div>
 
@@ -253,7 +272,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
               onClick={() => onNavigate('services')}
               className="px-6 py-3 rounded-xl bg-white hover:bg-[#FE8D00] text-slate-800 hover:text-black font-bold text-xs uppercase tracking-wider border border-slate-300 hover:border-[#FE8D00] transition-all flex items-center gap-2.5 cursor-pointer shadow-xs shrink-0"
             >
-              <span>Ver Todos em Detalhe</span>
+              <span>{t('viewAllServicesDetail', 'Ver Todos em Detalhe')}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -288,7 +307,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
 
                     {/* Scope Badge */}
                     <div className="absolute top-4 right-4 px-3.5 py-1 rounded-full bg-[#FE8D00] text-black text-[10px] font-black uppercase tracking-wider shadow-md">
-                      {srv.category}
+                      {srv.categoryKey ? t(srv.categoryKey, srv.category) : srv.category}
                     </div>
                   </div>
 
@@ -305,7 +324,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
 
                     <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                       <span className="text-[11px] sm:text-xs text-[#b45309] font-mono font-bold">
-                        {srv.scopeHighlight}
+                        {t(srv.scopeHighlightKey || '', srv.scopeHighlight)}
                       </span>
                       <button
                         onClick={() => onOpenQuote(srv.id)}
@@ -329,10 +348,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
               <Award className="w-4 h-4 text-[#FE8D00]" />
-              <span>Projectos & Impacto em Movimento</span>
+              <span>{t('projectsSectionBadge', 'Projectos & Impacto em Movimento')}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900">
-              Casos Reais & Iniciativas Coordenadas
+              {t('projectsSectionTitle', 'Casos Reais & Iniciativas Coordenadas')}
             </h2>
           </div>
 
@@ -340,14 +359,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
             <button
               onClick={prevProject}
               className="p-3.5 rounded-full bg-white hover:bg-[#FE8D00] text-slate-800 hover:text-black border border-slate-300 hover:border-[#FE8D00] transition-all cursor-pointer shadow-xs"
-              aria-label="Projecto Anterior"
+              aria-label={t('slidePrev', 'Projecto Anterior')}
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextProject}
               className="p-3.5 rounded-full bg-white hover:bg-[#FE8D00] text-slate-800 hover:text-black border border-slate-300 hover:border-[#FE8D00] transition-all cursor-pointer shadow-xs"
-              aria-label="Próximo Projecto"
+              aria-label={t('slideNext', 'Próximo Projecto')}
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -369,7 +388,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
               <div className="lg:col-span-7 h-[340px] sm:h-[440px] relative overflow-hidden bg-slate-100">
                 <img
                   src={projectSlides[activeProjectSlide].image}
-                  alt={projectSlides[activeProjectSlide].title}
+                  alt={t(projectSlides[activeProjectSlide].titleKey, projectSlides[activeProjectSlide].title)}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
@@ -382,21 +401,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
               {/* Text Col (5 cols) */}
               <div className="lg:col-span-5 p-6 sm:p-10 space-y-6">
                 <span className="text-xs font-bold text-[#b45309] uppercase tracking-wider">
-                  {projectSlides[activeProjectSlide].category}
+                  {t(projectSlides[activeProjectSlide].categoryKey, projectSlides[activeProjectSlide].category)}
                 </span>
 
                 <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
-                  {projectSlides[activeProjectSlide].title}
+                  {t(projectSlides[activeProjectSlide].titleKey, projectSlides[activeProjectSlide].title)}
                 </h3>
 
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  {projectSlides[activeProjectSlide].description}
+                  {t(projectSlides[activeProjectSlide].descKey, projectSlides[activeProjectSlide].description)}
                 </p>
 
                 <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 shadow-xs">
-                  <div className="text-[10px] text-slate-500 uppercase font-mono tracking-wider">Destaque de Impacto:</div>
+                  <div className="text-[10px] text-slate-500 uppercase font-mono tracking-wider">{t('impactHighlightLabel', 'Destaque de Impacto:')}</div>
                   <div className="text-xl font-black text-[#b45309] mt-1">
-                    {projectSlides[activeProjectSlide].stat}
+                    {t(projectSlides[activeProjectSlide].statKey, projectSlides[activeProjectSlide].stat)}
                   </div>
                 </div>
 
@@ -405,7 +424,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                     onClick={() => onOpenQuote()}
                     className="px-7 py-3.5 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
                   >
-                    Desenvolver Projecto Similar
+                    {t('developSimilarProject', 'Desenvolver Projecto Similar')}
                   </button>
                   <span className="text-xs font-mono text-slate-500 font-bold">
                     0{activeProjectSlide + 1} / 0{projectSlides.length}
@@ -431,13 +450,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
         <div className="relative z-10 max-w-7xl mx-auto space-y-14">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#FE8D00]/15 border border-[#FE8D00] text-[#b45309] text-xs font-black uppercase tracking-wider">
-              Ponte Estratégica Internacional
+              {t('strategicBridgeBadge', 'Ponte Estratégica Internacional')}
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-              Conectando Angola ao Mundo & o Mundo a Angola
+              {t('globalSectionTitle', 'Conectando Angola ao Mundo & o Mundo a Angola')}
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Presença e parceiros activos nos principais eixos de manufatura, logística e tecnologia.
+              {t('globalSectionSubtitle', 'Presença e parceiros activos nos principais eixos de manufatura, logística e tecnologia.')}
             </p>
           </div>
 
@@ -450,7 +469,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                 <div className="h-40 rounded-2xl overflow-hidden bg-slate-100">
                   <img
                     src={hub.image}
-                    alt={hub.name}
+                    alt={t(hub.nameKey, hub.name)}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -459,8 +478,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                   <span className="text-[10px] font-mono text-[#b45309] font-bold uppercase block tracking-wider">
                     {hub.city}
                   </span>
-                  <h4 className="text-lg font-black text-slate-900 mt-1">{hub.name}</h4>
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{hub.role}</p>
+                  <h4 className="text-lg font-black text-slate-900 mt-1">{t(hub.nameKey, hub.name)}</h4>
+                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">{t(hub.roleKey, hub.role)}</p>
                 </div>
               </div>
             ))}
@@ -471,7 +490,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
               onClick={() => onNavigate('global')}
               className="px-8 sm:px-10 py-4 rounded-xl bg-slate-900 text-white hover:bg-[#FE8D00] hover:text-black font-black text-xs uppercase tracking-wider transition-all shadow-lg cursor-pointer"
             >
-              Explorar Toda a Rede Global Ashled
+              {t('exploreAllGlobalNetwork', 'Explorar Toda a Rede Global Ashled')}
             </button>
           </div>
         </div>

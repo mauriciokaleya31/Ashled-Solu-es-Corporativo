@@ -15,10 +15,12 @@ import {
   ExternalLink,
   Paperclip,
   FileText,
+  PlaneTakeoff,
+  Users,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useLanguage } from '../context/LanguageContext';
-import { SERVICES_DATA, COMPANY_INFO } from '../data/companyData';
+import { SERVICES_DATA, COMPANY_INFO, AIRLINES_LIST } from '../data/companyData';
 import { dispatchLeadSubmission, LeadSubmission, formatBytes } from '../utils/emailService';
 
 interface QuoteModalProps {
@@ -30,7 +32,7 @@ interface QuoteModalProps {
 export const QuoteModal: React.FC<QuoteModalProps> = ({
   isOpen,
   onClose,
-  defaultServiceId = 'one-stop',
+  defaultServiceId = 'air-cargo',
 }) => {
   const { t } = useLanguage();
   const [selectedService, setSelectedService] = useState(defaultServiceId);
@@ -41,6 +43,18 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [details, setDetails] = useState('');
+  
+  // Specialized Air Cargo fields
+  const [selectedAirlines, setSelectedAirlines] = useState<string[]>(['TAAG Angola Airlines', 'TAP Air Portugal']);
+  const [cargoType, setCargoType] = useState('Carga Geral / Comercial');
+  const [cargoWeight, setCargoWeight] = useState('');
+  const [cargoDestination, setCargoDestination] = useState('');
+
+  // Specialized Staffing fields
+  const [staffProfile, setStaffProfile] = useState('Técnicos Especializados');
+  const [staffCount, setStaffCount] = useState('1 - 3 Colaboradores');
+  const [staffContractType, setStaffContractType] = useState('Contrato a Termo / Projeto');
+
   const [attachmentFile, setAttachmentFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -53,11 +67,21 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   } | null>(null);
   const [copied, setCopied] = useState(false);
 
+  const toggleAirline = (airlineName: string) => {
+    if (selectedAirlines.includes(airlineName)) {
+      if (selectedAirlines.length > 1) {
+        setSelectedAirlines(selectedAirlines.filter((a) => a !== airlineName));
+      }
+    } else {
+      setSelectedAirlines([...selectedAirlines, airlineName]);
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       if (file.size > 25 * 1024 * 1024) {
-        alert('O arquivo selecionado excede o limite máximo de 25MB.');
+        alert(t('fileSizeExceedAlert', 'O arquivo selecionado excede o limite máximo de 25MB.'));
         return;
       }
       setAttachmentFile(file);
@@ -78,6 +102,22 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     const srv = SERVICES_DATA.find((s) => s.id === selectedService);
     const serviceName = srv ? t(srv.titleKey) : 'Serviço Personalizado Ashled';
 
+    let enrichedDetails = details;
+    if (selectedService === 'air-cargo') {
+      enrichedDetails = `[ESPECIFICAÇÕES DE CARGA AÉREA & COMPANHIAS]\n` +
+        `• Companhias Aéreas Preferenciais: ${selectedAirlines.join(', ')}\n` +
+        `• Tipo de Carga: ${cargoType}\n` +
+        (cargoDestination ? `• Destino Pretendido: ${cargoDestination}\n` : '') +
+        (cargoWeight ? `• Peso / Volume Estimado: ${cargoWeight}\n` : '') +
+        `\n[OBSERVAÇÕES ADICIONAIS]\n${details}`;
+    } else if (selectedService === 'staffing') {
+      enrichedDetails = `[ESPECIFICAÇÕES DE RECRUTAMENTO & FUNCIONÁRIOS]\n` +
+        `• Perfil Desejado: ${staffProfile}\n` +
+        `• Quantidade de Vagas: ${staffCount}\n` +
+        `• Modalidade de Contrato: ${staffContractType}\n` +
+        `\n[DESCRIÇÃO DAS FUNÇÕES & REQUISITOS]\n${details}`;
+    }
+
     const result = await dispatchLeadSubmission({
       name,
       company,
@@ -87,7 +127,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
       serviceName,
       urgency: urgency === 'urgent' ? 'Urgente (< 15 dias)' : urgency === 'priority' ? 'Prioridade Alta (15-30 dias)' : 'Padrão / Planeado',
       geoScope: scope === 'global' ? 'Global (China/Europa/Américas)' : scope === 'regional' ? 'Regional África' : 'Angola / Luanda',
-      message: details,
+      message: enrichedDetails,
       attachmentFile,
     });
 
@@ -160,7 +200,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   {t('requestQuote', 'Solicitar Cotação & Coordenação')}
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Direcionado para: <strong className="text-[#FE8D00]">geral@ashled.com</strong>
+                  {t('directedToOfficialEmail', 'Direcionado para:')} <strong className="text-[#FE8D00]">geral@ashled.com</strong>
                 </p>
               </div>
             </div>
@@ -198,7 +238,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                         >
                           <span className="font-bold line-clamp-1">{t(srv.titleKey)}</span>
                           <span className={`text-[10px] line-clamp-1 ${isSelected ? 'text-black/80 font-semibold' : 'text-slate-500'}`}>
-                            {srv.scopeHighlight}
+                            {t(srv.scopeHighlightKey || '', srv.scopeHighlight)}
                           </span>
                         </button>
                       );
@@ -206,17 +246,153 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   </div>
                 </div>
 
+                {/* Dynamic Configuration Panel for Air Cargo or Staffing */}
+                {selectedService === 'air-cargo' && (
+                  <div className="p-4 rounded-2xl bg-amber-500/5 border border-[#FE8D00]/30 space-y-3">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#b45309]">
+                      <PlaneTakeoff className="w-4 h-4 text-[#FE8D00]" />
+                      <span>{t('airlinePartnersLabel', 'Companhias Aéreas para Reserva de Espaço & Embarque:')}</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {AIRLINES_LIST.map((airline) => {
+                        const isChosen = selectedAirlines.includes(airline.name);
+                        return (
+                          <button
+                            key={airline.code}
+                            type="button"
+                            onClick={() => toggleAirline(airline.name)}
+                            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer border ${
+                              isChosen
+                                ? 'bg-[#FE8D00] text-black border-[#FE8D00] shadow-xs'
+                                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                            }`}
+                          >
+                            <span>{airline.flag}</span>
+                            <span>{airline.name.replace(' Cargo', '').replace(' SkyCargo', '')}</span>
+                            {isChosen && <Check className="w-3 h-3 text-black" />}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                          {t('destinationCityCountry', 'Destino (Cidade / País)')}
+                        </label>
+                        <input
+                          type="text"
+                          value={cargoDestination}
+                          onChange={(e) => setCargoDestination(e.target.value)}
+                          placeholder={t('placeholderDestCity', 'Ex: Lisboa, Frankfurt, Dubai...')}
+                          className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#FE8D00]"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                          {t('cargoTypeLabel', 'Tipo de Mercadoria')}
+                        </label>
+                        <select
+                          value={cargoType}
+                          onChange={(e) => setCargoType(e.target.value)}
+                          className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#FE8D00]"
+                        >
+                          <option value="Carga Geral / Comercial">{t('cargoGeneralCommercial', 'Carga Geral / Comercial')}</option>
+                          <option value="Peças & Sobressalentes / AOG">{t('cargoSpareParts', 'Peças & Sobressalentes / AOG')}</option>
+                          <option value="Produtos Perecíveis / Alimentares">{t('cargoPerishables', 'Produtos Perecíveis')}</option>
+                          <option value="Amostras Comerciais & Documentos">{t('cargoSamplesDocs', 'Amostras Comerciais')}</option>
+                          <option value="Equipamentos Eletrónicos / TI">{t('cargoElectronics', 'Equipamentos Eletrónicos')}</option>
+                          <option value="Carga de Alta Prioridade">{t('cargoHighPriority', 'Carga de Alta Prioridade')}</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                          {t('estimatedWeightVolume', 'Peso Estimado (kg) / Volume')}
+                        </label>
+                        <input
+                          type="text"
+                          value={cargoWeight}
+                          onChange={(e) => setCargoWeight(e.target.value)}
+                          placeholder={t('placeholderWeightVol', 'Ex: 250 kg / 2 paletes')}
+                          className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#FE8D00]"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedService === 'staffing' && (
+                  <div className="p-4 rounded-2xl bg-amber-500/5 border border-[#FE8D00]/30 space-y-3">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#b45309]">
+                      <Users className="w-4 h-4 text-[#FE8D00]" />
+                      <span>{t('staffSpecsLabel', 'Especificações de Recrutamento & Funcionários:')}</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                          {t('professionalProfileLabel', 'Perfil Profissional')}
+                        </label>
+                        <select
+                          value={staffProfile}
+                          onChange={(e) => setStaffProfile(e.target.value)}
+                          className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#FE8D00]"
+                        >
+                          <option value="Técnicos Especializados">{t('roleTechMaint', 'Técnicos Especializados')}</option>
+                          <option value="Operacionais & Logística">{t('roleLogisticsOps', 'Operacionais & Logística')}</option>
+                          <option value="Administrativos & Financeiros">{t('roleAdminHR', 'Administrativos & Financeiros')}</option>
+                          <option value="Engenharia, Construção & TI">{t('roleEngIT', 'Engenharia & TI')}</option>
+                          <option value="Comerciais, Vendas & Atendimento">{t('roleSalesSup', 'Comerciais & Vendas')}</option>
+                          <option value="Gestão & Liderança">{t('roleOpsTeams', 'Gestão & Liderança')}</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                          {t('staffCountLabel', 'Vagas / Funcionários')}
+                        </label>
+                        <select
+                          value={staffCount}
+                          onChange={(e) => setStaffCount(e.target.value)}
+                          className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#FE8D00]"
+                        >
+                          <option value="1 - 3 Colaboradores">{t('staffCount1to3', '1 a 3 Colaboradores')}</option>
+                          <option value="4 - 10 Colaboradores">{t('staffCount4to10', '4 a 10 Colaboradores')}</option>
+                          <option value="11 - 25 Colaboradores">{t('staffCount11to25', '11 a 25 Colaboradores')}</option>
+                          <option value="Mais de 25 Colaboradores (Equipa Completa)">{t('staffCountOver25', '+25 (Equipa Completa)')}</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                          {t('contractModalityLabel', 'Modalidade')}
+                        </label>
+                        <select
+                          value={staffContractType}
+                          onChange={(e) => setStaffContractType(e.target.value)}
+                          className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-[#FE8D00]"
+                        >
+                          <option value="Contrato a Termo / Projeto">{t('contractProjectTemp', 'Projeto / Temporário')}</option>
+                          <option value="Recrutamento & Seleção Direta">{t('contractDirectHire', 'Contratação Fixa / Direta')}</option>
+                          <option value="Outsourcing / Alocação Contínua">{t('contractOutsourcing', 'Outsourcing de Mão de Obra')}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Scope & Urgency row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                      2. Âmbito Geográfico
+                      {t('formScope', '2. Âmbito Geográfico')}
                     </label>
                     <div className="grid grid-cols-3 gap-1.5">
                       {[
-                        { id: 'local', label: 'Angola' },
-                        { id: 'regional', label: 'África' },
-                        { id: 'global', label: 'Global' },
+                        { id: 'local', labelKey: 'scopeAngola', labelFallback: 'Angola' },
+                        { id: 'regional', labelKey: 'scopeAfrica', labelFallback: 'África' },
+                        { id: 'global', labelKey: 'scopeGlobal', labelFallback: 'Global' },
                       ].map((item) => (
                         <button
                           key={item.id}
@@ -228,7 +404,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                               : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
                           }`}
                         >
-                          {item.label}
+                          {t(item.labelKey, item.labelFallback)}
                         </button>
                       ))}
                     </div>
@@ -236,13 +412,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                      3. Nível de Urgência
+                      {t('urgencyTitle', '3. Nível de Urgência')}
                     </label>
                     <div className="grid grid-cols-3 gap-1.5">
                       {[
-                        { id: 'standard', label: 'Padrão' },
-                        { id: 'priority', label: 'Prioritário' },
-                        { id: 'urgent', label: 'Urgente' },
+                        { id: 'standard', labelKey: 'urgencyStandard', labelFallback: 'Padrão' },
+                        { id: 'priority', labelKey: 'urgencyPriority', labelFallback: 'Prioritário' },
+                        { id: 'urgent', labelKey: 'urgencyUrgent', labelFallback: 'Urgente' },
                       ].map((item) => (
                         <button
                           key={item.id}
@@ -254,7 +430,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                               : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
                           }`}
                         >
-                          {item.label}
+                          {t(item.labelKey, item.labelFallback)}
                         </button>
                       ))}
                     </div>
@@ -273,7 +449,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Ex: Manuel Silva"
+                      placeholder={t('placeholderName', 'Ex: Manuel Silva')}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -287,7 +463,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       type="text"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      placeholder="Ex: Grupo Comercial Lda"
+                      placeholder={t('placeholderCompany', 'Ex: Grupo Comercial Lda')}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -302,7 +478,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="contacto@empresa.com"
+                      placeholder={t('placeholderEmail', 'contacto@empresa.com')}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -317,7 +493,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       required
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="(+244) 926 084 375"
+                      placeholder={t('placeholderPhone', '(+244) 926 084 375')}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -333,7 +509,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     rows={3}
                     value={details}
                     onChange={(e) => setDetails(e.target.value)}
-                    placeholder="Descreva detalhes como tipo de mercadoria, fornecedor de interesse, prazos ou destino final..."
+                    placeholder={t('placeholderDetails', 'Descreva detalhes como tipo de mercadoria, fornecedor de interesse, prazos ou destino final...')}
                     className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] transition-colors resize-none"
                   />
                 </div>
@@ -342,9 +518,9 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="block text-xs font-semibold text-slate-700">
-                      Anexar Arquivo ou Documento (Opcional)
+                      {t('attachFileOptional', 'Anexar Arquivo ou Documento (Opcional)')}
                     </label>
-                    <span className="text-[10px] text-slate-400 font-mono">PDF, DOC, XLS, JPG, PNG (Até 25MB)</span>
+                    <span className="text-[10px] text-slate-400 font-mono">PDF, DOC, XLS, JPG, PNG ({t('upTo25MB', 'Até 25MB')})</span>
                   </div>
 
                   <input
@@ -363,7 +539,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       className="w-full py-2.5 px-3.5 rounded-xl border border-dashed border-slate-300 hover:border-[#FE8D00] bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-2 text-xs font-medium cursor-pointer group"
                     >
                       <Paperclip className="w-3.5 h-3.5 text-[#FE8D00] group-hover:scale-110 transition-transform" />
-                      <span>Anexar lista de mercadorias, fatura proforma ou documento</span>
+                      <span>{t('attachManifestDocument', 'Anexar lista de mercadorias, fatura proforma ou documento')}</span>
                     </button>
                   ) : (
                     <div className="p-2.5 rounded-xl bg-slate-50 border border-[#FE8D00]/50 flex items-center justify-between shadow-xs">
@@ -379,7 +555,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       <button
                         type="button"
                         onClick={handleRemoveFile}
-                        title="Remover anexo"
+                        title={t('removeAttachment', 'Remover anexo')}
                         className="p-1 text-slate-400 hover:text-rose-500 rounded-lg cursor-pointer shrink-0 ml-2"
                       >
                         <X className="w-4 h-4" />
@@ -399,12 +575,12 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                        <span>A despachar mensagem e anexo para geral@ashled.com...</span>
+                        <span>{t('dispatchingStatus', 'A despachar mensagem e anexo para geral@ashled.com...')}</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4 text-black" />
-                        <span>Enviar Pedido de Cotação para o Email</span>
+                        <span>{t('formSubmitQuote', 'Enviar Pedido de Cotação para o Email')}</span>
                       </>
                     )}
                   </button>
@@ -425,14 +601,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   <span className="inline-block px-3 py-1 rounded-full bg-[#FE8D00] text-black text-xs font-mono font-black shadow-xs">
                     REF: {leadResult.ticketRef}
                   </span>
-                  <h4 className="text-2xl font-black text-slate-900">Solicitação Registada com Sucesso!</h4>
+                  <h4 className="text-2xl font-black text-slate-900">{t('quoteRegisteredSuccess', 'Solicitação Registada com Sucesso!')}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
-                    A sua proposta e anexo foram encaminhados diretamente para o e-mail oficial da Ashled.
+                    {t('quoteForwardedInfo', 'A sua proposta e anexo foram encaminhados diretamente para o e-mail oficial da Ashled.')}
                   </p>
                   {leadResult.lead.attachmentName && (
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 text-xs mt-1">
                       <Paperclip className="w-3.5 h-3.5 text-[#FE8D00]" />
-                      <span>Anexo: <strong>{leadResult.lead.attachmentName}</strong> ({leadResult.lead.attachmentSize})</span>
+                      <span>{t('attachmentLabel', 'Anexo:')} <strong>{leadResult.lead.attachmentName}</strong> ({leadResult.lead.attachmentSize})</span>
                     </div>
                   )}
                 </div>
@@ -440,7 +616,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 {/* Email dispatch audit box */}
                 <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left space-y-2 text-xs shadow-xs">
                   <div className="flex items-center justify-between text-slate-500 font-mono text-[11px] border-b border-slate-200 pb-1.5">
-                    <span>Destinatário Oficial:</span>
+                    <span>{t('officialRecipient', 'Destinatário Oficial:')}</span>
                     <strong className="text-[#FE8D00]">geral@ashled.com</strong>
                   </div>
                   <div className="text-slate-700">
@@ -456,7 +632,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-md transition-all"
                   >
                     <Mail className="w-4 h-4 text-white" />
-                    <span>Abrir & Confirmar no Seu Email</span>
+                    <span>{t('openAndConfirmEmail', 'Abrir & Confirmar no Seu Email')}</span>
                   </a>
 
                   <a
@@ -467,7 +643,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md transition-all"
                   >
                     <Phone className="w-4 h-4" />
-                    <span>Enviar no WhatsApp</span>
+                    <span>{t('sendViaWhatsApp', 'Enviar no WhatsApp')}</span>
                   </a>
 
                   <button
@@ -475,7 +651,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium border border-slate-200 cursor-pointer"
                   >
                     {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                    <span>{copied ? 'Copiado!' : 'Copiar Texto'}</span>
+                    <span>{copied ? t('copiedLabel', 'Copiado!') : t('copyTextLabel', 'Copiar Texto')}</span>
                   </button>
                 </div>
 
@@ -485,7 +661,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     onClick={handleReset}
                     className="text-xs text-slate-500 hover:text-slate-900 underline cursor-pointer"
                   >
-                    Concluir e Voltar ao Site
+                    {t('finishAndReturnToSite', 'Concluir e Voltar ao Site')}
                   </button>
                 </div>
               </motion.div>

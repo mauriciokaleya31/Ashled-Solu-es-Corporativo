@@ -55,7 +55,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
       const file = e.target.files[0];
       // Limit 25MB
       if (file.size > 25 * 1024 * 1024) {
-        alert('O arquivo selecionado excede o limite máximo de 25MB.');
+        alert(t('fileSizeExceedAlert', 'O arquivo selecionado excede o limite máximo de 25MB.'));
         return;
       }
       setAttachmentFile(file);
@@ -144,7 +144,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
           <div className="lg:col-span-7 p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-7">
             <div className="flex items-center justify-between border-b border-slate-100 pb-5">
               <div>
-                <h3 className="text-2xl font-black text-slate-900">Envie a sua Mensagem ou Pedido</h3>
+                <h3 className="text-2xl font-black text-slate-900">{t('sendYourMessageOrRequest', 'Envie a sua Mensagem ou Pedido')}</h3>
               </div>
               <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-[#FE8D00] shadow-xs">
                 <MessageSquare className="w-5 h-5" />
@@ -163,7 +163,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Ex: João Baptista"
+                      placeholder={t('placeholderNameContact', 'Ex: João Baptista')}
                       className="w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] focus:ring-1 focus:ring-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -176,7 +176,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       type="text"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      placeholder="Ex: Grupo Luanda S.A."
+                      placeholder={t('placeholderCompanyContact', 'Ex: Grupo Luanda S.A.')}
                       className="w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] focus:ring-1 focus:ring-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -190,7 +190,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="seu.email@empresa.com"
+                      placeholder={t('placeholderEmailContact', 'seu.email@empresa.com')}
                       className="w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] focus:ring-1 focus:ring-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -204,7 +204,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       required
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="(+244) 926 084 375"
+                      placeholder={t('placeholderPhoneContact', '(+244) 926 084 375')}
                       className="w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] focus:ring-1 focus:ring-[#FE8D00] transition-colors"
                     />
                   </div>
@@ -236,7 +236,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Descreva detalhes como objetivos, prazos, tipos de carga ou suporte requerido..."
+                    placeholder={t('placeholderMessageContact', 'Descreva detalhes como objetivos, prazos, tipos de carga ou suporte requerido...')}
                     className="w-full px-3.5 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#FE8D00] focus:ring-1 focus:ring-[#FE8D00] transition-colors resize-none"
                   />
                 </div>
@@ -245,9 +245,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="block text-xs font-semibold text-slate-700">
-                      Anexar Arquivo ou Documento (Opcional)
+                      {t('attachFileOptional', 'Anexar Arquivo ou Documento (Opcional)')}
                     </label>
-                    <span className="text-[10px] text-slate-400 font-mono">PDF, DOC, XLS, JPG, PNG (Até 25MB)</span>
+                    <span className="text-[10px] text-slate-400 font-mono">PDF, DOC, XLS, JPG, PNG ({t('upTo25MB', 'Até 25MB')})</span>
                   </div>
 
                   <input
@@ -266,7 +266,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       className="w-full py-3.5 px-4 rounded-xl border border-dashed border-slate-300 hover:border-[#FE8D00] bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-2.5 text-xs font-medium cursor-pointer group"
                     >
                       <Paperclip className="w-4 h-4 text-[#FE8D00] group-hover:scale-110 transition-transform" />
-                      <span>Clique para selecionar ou anexar arquivo de cotação/documento</span>
+                      <span>{t('clickToAttachDoc', 'Clique para selecionar ou anexar arquivo de cotação/documento')}</span>
                     </button>
                   ) : (
                     <div className="p-3 rounded-xl bg-slate-50 border border-[#FE8D00]/50 flex items-center justify-between shadow-xs">
@@ -297,7 +297,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                   className="w-full py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   {isSubmitting ? (
-                    <span>A despachar mensagem e anexo para geral@ashled.com...</span>
+                    <span>{t('dispatchingStatus', 'A despachar mensagem e anexo para geral@ashled.com...')}</span>
                   ) : (
                     <>
                       <Send className="w-4 h-4 text-black" />
@@ -319,14 +319,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                   <span className="text-xs font-mono font-bold text-black bg-[#FE8D00] px-3 py-1 rounded-full shadow-xs">
                     REF: {leadResult.ticketRef}
                   </span>
-                  <h4 className="text-2xl font-black text-slate-900">Mensagem Enviada com Sucesso!</h4>
+                  <h4 className="text-2xl font-black text-slate-900">{t('messageSentSuccess', 'Mensagem Enviada com Sucesso!')}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
-                    A sua mensagem e anexo foram despachados para o e-mail oficial: <strong className="text-[#FE8D00]">geral@ashled.com</strong>
+                    {t('messageDispatchedInfo', 'A sua mensagem e anexo foram despachados para o e-mail oficial:')} <strong className="text-[#FE8D00]">geral@ashled.com</strong>
                   </p>
                   {leadResult.lead.attachmentName && (
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 text-xs mt-2">
                       <Paperclip className="w-3.5 h-3.5 text-[#FE8D00]" />
-                      <span>Anexo: <strong>{leadResult.lead.attachmentName}</strong> ({leadResult.lead.attachmentSize})</span>
+                      <span>{t('attachmentLabel', 'Anexo:')} <strong>{leadResult.lead.attachmentName}</strong> ({leadResult.lead.attachmentSize})</span>
                     </div>
                   )}
                 </div>
@@ -338,7 +338,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                     className="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md"
                   >
                     <Mail className="w-4 h-4 text-white" />
-                    <span>Abrir e Enviar no Email</span>
+                    <span>{t('openAndSendEmail', 'Abrir e Enviar no Email')}</span>
                   </a>
 
                   <a
@@ -348,7 +348,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                     className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md"
                   >
                     <Phone className="w-4 h-4" />
-                    <span>Enviar no WhatsApp</span>
+                    <span>{t('sendViaWhatsApp', 'Enviar no WhatsApp')}</span>
                   </a>
 
                   <button
@@ -356,7 +356,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                     className="px-4 py-3 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-medium flex items-center justify-center gap-1.5 cursor-pointer border border-slate-200"
                   >
                     {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                    <span>{copied ? 'Copiado' : 'Copiar'}</span>
+                    <span>{copied ? t('copiedLabel', 'Copiado') : t('copyLabel', 'Copiar')}</span>
                   </button>
                 </div>
 
@@ -368,7 +368,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                     }}
                     className="text-xs text-slate-500 hover:text-slate-900 underline cursor-pointer"
                   >
-                    Enviar Outra Mensagem
+                    {t('sendAnotherMessage', 'Enviar Outra Mensagem')}
                   </button>
                 </div>
               </motion.div>
@@ -379,7 +379,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
           <div className="lg:col-span-5 space-y-6">
             <div className="p-7 rounded-3xl bg-white border border-slate-200 space-y-5 shadow-xl">
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-                Informações da Empresa
+                {t('companyInfoBadge', 'Informações da Empresa')}
               </h4>
 
               {/* Legal Registration */}
@@ -405,7 +405,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       <Phone className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-slate-500 uppercase font-mono">Telefone / WhatsApp</div>
+                      <div className="text-[10px] text-slate-500 uppercase font-mono">{t('phoneWhatsappLabel', 'Telefone / WhatsApp')}</div>
                       <div className="font-bold text-slate-900 group-hover:text-[#FE8D00]">{COMPANY_INFO.phone}</div>
                     </div>
                   </div>
@@ -422,7 +422,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-slate-500 uppercase font-mono">E-mail Oficial</div>
+                      <div className="text-[10px] text-slate-500 uppercase font-mono">{t('officialEmailLabel', 'E-mail Oficial')}</div>
                       <div className="font-bold text-slate-900 group-hover:text-[#FE8D00]">{COMPANY_INFO.email}</div>
                     </div>
                   </div>
@@ -435,7 +435,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenQuot
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] text-slate-500 uppercase font-mono">Endereço Sede</div>
+                    <div className="text-[10px] text-slate-500 uppercase font-mono">{t('headquartersAddressLabel', 'Endereço Sede')}</div>
                     <div className="font-bold text-slate-900 leading-relaxed">{COMPANY_INFO.address}</div>
                   </div>
                 </div>

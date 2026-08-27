@@ -111,7 +111,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onNavigate, onOpenQuot
         <div className="space-y-10 pt-12 border-t border-slate-200">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
-              Diferenciais Competitivos
+              {t('competitiveDifferentiators', 'Diferenciais Competitivos')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900">
               {t('whyChooseTitle', 'Porquê Escolher a Ashled?')}
@@ -154,7 +154,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onNavigate, onOpenQuot
               className="px-8 py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 mx-auto cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-black" />
-              <span>Experimente o Padrão de Qualidade Ashled</span>
+              <span>{t('experienceQualityStandard', 'Experimente o Padrão de Qualidade Ashled')}</span>
             </button>
           </div>
         </div>

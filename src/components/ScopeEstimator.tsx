@@ -25,22 +25,22 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
   const getUrgencyBadge = () => {
     switch (urgency) {
       case 'urgent':
-        return { label: 'Execução Imediata / Fast-Track', color: 'text-black bg-[#FE8D00]' };
+        return { label: t('urgentBadge', 'Execução Imediata / Fast-Track'), color: 'text-black bg-[#FE8D00]' };
       case 'priority':
-        return { label: 'Prioridade Alta', color: 'text-white bg-neutral-800 border border-[#FE8D00]/50' };
+        return { label: t('priorityBadge', 'Prioridade Alta (15-30 dias)'), color: 'text-white bg-neutral-800 border border-[#FE8D00]/50' };
       default:
-        return { label: 'Cronograma Padrão', color: 'text-neutral-300 bg-neutral-800' };
+        return { label: t('standardBadge', 'Cronograma Padrão'), color: 'text-neutral-300 bg-neutral-800' };
     }
   };
 
   const getGeoBadge = () => {
     switch (geoScope) {
       case 'global':
-        return 'Internacional (China / Europa / Américas)';
+        return t('geoGlobalOption', 'Internacional (China / Europa / Américas)');
       case 'regional':
-        return 'Regional (África Austral / SADC)';
+        return t('geoRegionalOption', 'Regional (África Austral / SADC)');
       default:
-        return 'Nacional (Angola / Luanda)';
+        return t('geoLocalOption', 'Nacional (Angola / Luanda)');
     }
   };
 
@@ -51,13 +51,13 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
         <div className="space-y-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FE8D00]/20 border border-[#FE8D00] text-[#FE8D00] text-xs font-black uppercase tracking-wider">
             <Sliders className="w-3.5 h-3.5" />
-            <span>Simulador de Âmbito & Estruturação</span>
+            <span>{t('scopeEstimatorBadge', 'Simulador de Âmbito & Estruturação')}</span>
           </div>
           <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Configure a Sua Necessidade de Serviço
+            {t('scopeEstimatorTitle', 'Configure a Sua Necessidade de Serviço')}
           </h3>
           <p className="text-xs sm:text-sm text-neutral-400 max-w-xl">
-            Selecione o serviço pretendido, abrangência geográfica e nível de urgência para visualizar o fluxo de coordenação Ashled.
+            {t('scopeEstimatorSubtitle', 'Selecione o serviço pretendido, abrangência geográfica e nível de urgência para visualizar o fluxo de coordenação Ashled.')}
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
           {/* Step 1: Select Service */}
           <div className="space-y-3">
             <label className="text-xs font-bold uppercase tracking-wider text-neutral-400 block">
-              1. Selecione o Pilar de Atuação:
+              {t('stepSelectService', '1. Selecione o Pilar de Atuação:')}
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {SERVICES_DATA.map((srv) => (
@@ -87,7 +87,7 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
                 >
                   <div className="text-xs font-bold">{t(srv.titleKey)}</div>
                   <div className={`text-[11px] mt-1 line-clamp-1 ${selectedServiceId === srv.id ? 'text-black/80 font-semibold' : 'text-neutral-500'}`}>
-                    {srv.scopeHighlight}
+                    {t(srv.scopeHighlightKey || '', srv.scopeHighlight)}
                   </div>
                 </button>
               ))}
@@ -97,13 +97,13 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
           {/* Step 2: Geographic Scope */}
           <div className="space-y-3">
             <label className="text-xs font-bold uppercase tracking-wider text-neutral-400 block">
-              2. Âmbito Geográfico da Operação:
+              {t('stepSelectGeo', '2. Âmbito Geográfico da Operação:')}
             </label>
             <div className="grid grid-cols-3 gap-2">
               {[
-                { id: 'local', label: 'Local (Angola)' },
-                { id: 'regional', label: 'Regional (África)' },
-                { id: 'global', label: 'Global (Internacional)' },
+                { id: 'local', label: t('geoLocal', 'Local (Angola)') },
+                { id: 'regional', label: t('geoRegional', 'Regional (África)') },
+                { id: 'global', label: t('geoGlobal', 'Global (Internacional)') },
               ].map((g) => (
                 <button
                   key={g.id}
@@ -123,13 +123,13 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
           {/* Step 3: Timeline & Urgency */}
           <div className="space-y-3">
             <label className="text-xs font-bold uppercase tracking-wider text-neutral-400 block">
-              3. Nível de Prioridade & Cronograma:
+              {t('stepSelectUrgency', '3. Nível de Prioridade & Cronograma:')}
             </label>
             <div className="grid grid-cols-3 gap-2">
               {[
-                { id: 'standard', label: 'Planeado / Padrão' },
-                { id: 'priority', label: 'Prioritário (15-30 d)' },
-                { id: 'urgent', label: 'Urgente (< 15 dias)' },
+                { id: 'standard', label: t('urgencyStandard', 'Planeado / Padrão') },
+                { id: 'priority', label: t('urgencyPriority', 'Prioritário (15-30 d)') },
+                { id: 'urgent', label: t('urgencyUrgent', 'Urgente (< 15 dias)') },
               ].map((u) => (
                 <button
                   key={u.id}
@@ -156,7 +156,7 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
         >
           <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-[#FE8D00]">
-              Resumo da Configuração
+              {t('configSummaryTitle', 'Resumo da Configuração')}
             </span>
             <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${getUrgencyBadge().color}`}>
               {getUrgencyBadge().label}
@@ -165,30 +165,30 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
 
           <div className="space-y-3">
             <div>
-              <div className="text-[10px] text-neutral-500 uppercase font-mono">Serviço Selecionado</div>
+              <div className="text-[10px] text-neutral-500 uppercase font-mono">{t('selectedServiceLabel', 'Serviço Selecionado')}</div>
               <h4 className="text-lg font-black text-white">{t(currentService.titleKey)}</h4>
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
-                <span className="text-neutral-500 block text-[10px] uppercase font-mono">Cobertura</span>
+                <span className="text-neutral-500 block text-[10px] uppercase font-mono">{t('coverageLabel', 'Cobertura')}</span>
                 <span className="text-white font-semibold">{getGeoBadge()}</span>
               </div>
               <div>
-                <span className="text-neutral-500 block text-[10px] uppercase font-mono">Garantia</span>
-                <span className="text-[#FE8D00] font-semibold">100% Coordenado</span>
+                <span className="text-neutral-500 block text-[10px] uppercase font-mono">{t('warrantyLabel', 'Garantia')}</span>
+                <span className="text-[#FE8D00] font-semibold">{t('coordinatedGuarantee', '100% Coordenado')}</span>
               </div>
             </div>
 
             <div className="p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 space-y-2">
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#FE8D00] block">
-                Entregas Chave Previstas:
+                {t('keyDeliverablesLabel', 'Entregas Chave Previstas:')}
               </span>
               <div className="space-y-1 text-xs text-neutral-300">
                 {currentService.deliverables.slice(0, 3).map((d, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#FE8D00] shrink-0" />
-                    <span className="truncate">{d}</span>
+                    <span className="truncate">{currentService.deliverableKeys?.[i] ? t(currentService.deliverableKeys[i], d) : d}</span>
                   </div>
                 ))}
               </div>
@@ -200,7 +200,7 @@ export const ScopeEstimator: React.FC<ScopeEstimatorProps> = ({ onStartProject }
             className="w-full py-3.5 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(254,141,0,0.3)] flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-black" />
-            <span>Solicitar Cotação para Esta Configuração</span>
+            <span>{t('requestQuoteForConfig', 'Solicitar Cotação para Esta Configuração')}</span>
           </button>
         </motion.div>
       </div>

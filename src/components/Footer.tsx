@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             <div className="pt-2">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-neutral-900 text-xs text-neutral-300">
                 <span className="w-2 h-2 rounded-full bg-[#FE8D00] animate-pulse"></span>
-                <span>{COMPANY_INFO.country} • Conexões Globais</span>
+                <span>{COMPANY_INFO.country} • {t('globalConnections', 'Conexões Globais')}</span>
               </div>
             </div>
           </div>
@@ -168,11 +168,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
 
         {/* Bottom Copyright Bar */}
         <div className="mt-12 pt-6 border-t border-neutral-800 text-xs text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} {COMPANY_INFO.legalName}. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} {COMPANY_INFO.legalName}. {t('allRightsReserved', 'Todos os direitos reservados.')}</p>
           <div className="flex items-center gap-4 text-[11px] text-neutral-400">
-            <span>Luanda, Angola</span>
+            <span>{t('luandaAngola', 'Luanda, Angola')}</span>
             <span>•</span>
-            <span className="text-[#FE8D00] font-mono font-bold">NIF: {COMPANY_INFO.nif}</span>
+            <span className="text-[#FE8D00] font-mono font-bold">{t('nifLabel', 'NIF')}: {COMPANY_INFO.nif}</span>
           </div>
         </div>
       </div>

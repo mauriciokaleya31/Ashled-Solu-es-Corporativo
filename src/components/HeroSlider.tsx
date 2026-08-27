@@ -113,7 +113,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
               onClick={() => onOpenQuote(currentSlide.serviceId)}
               className="px-7 sm:px-9 py-3.5 sm:py-4 rounded-xl bg-[#FE8D00] hover:bg-[#ff9e24] text-black font-black text-xs sm:text-sm tracking-wide uppercase transition-all shadow-[0_0_30px_rgba(254,141,0,0.4)] hover:shadow-[0_0_40px_rgba(254,141,0,0.7)] transform active:scale-95 flex items-center gap-3 cursor-pointer"
             >
-              <span>{currentSlide.ctaText}</span>
+              <span>{t(currentSlide.ctaKey, currentSlide.ctaText)}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
@@ -130,7 +130,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
       {/* Slider Controls: Arrows - Borderless */}
       <button
         onClick={prevSlide}
-        aria-label="Slide Anterior"
+        aria-label={t('slidePrev', 'Slide Anterior')}
         className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/70 hover:bg-[#FE8D00] text-white hover:text-black transition-all backdrop-blur-md cursor-pointer border-0 shadow-lg"
       >
         <ChevronLeft className="w-6 h-6" />
@@ -138,7 +138,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
 
       <button
         onClick={nextSlide}
-        aria-label="Próximo Slide"
+        aria-label={t('slideNext', 'Próximo Slide')}
         className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/70 hover:bg-[#FE8D00] text-white hover:text-black transition-all backdrop-blur-md cursor-pointer border-0 shadow-lg"
       >
         <ChevronRight className="w-6 h-6" />
@@ -154,7 +154,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
               <button
                 key={slide.id}
                 onClick={() => goToSlide(idx)}
-                aria-label={`Ir para Slide ${idx + 1}`}
+                aria-label={`Slide ${idx + 1}`}
                 className="group flex flex-col items-start gap-1 text-left cursor-pointer"
               >
                 <div className="flex items-center gap-2">
@@ -179,11 +179,11 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate, onOpenQuote 
             className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
           >
             {isAutoPlaying ? <Pause className="w-3.5 h-3.5 text-[#FE8D00]" /> : <Play className="w-3.5 h-3.5" />}
-            <span>{isAutoPlaying ? 'Auto' : 'Pausado'}</span>
+            <span>{isAutoPlaying ? t('autoPlay', 'Auto') : t('paused', 'Pausado')}</span>
           </button>
           <span className="hidden sm:inline-block">•</span>
           <span className="text-[11px] font-mono text-neutral-400 hidden sm:inline-block">
-            NIF: 5001963090 • Luanda, Angola
+            {t('nifLabel', 'NIF')}: 5001963090 • {t('luandaAngola', 'Luanda, Angola')}
           </span>
         </div>
       </div>
